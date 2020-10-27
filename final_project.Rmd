@@ -12,3 +12,74 @@ crime <- read_csv("data/crime_and_incarceration_by_state.csv")
 
 
 ### Beginning of Project
+
+```{r ex-1}
+#Seperate data between Federal prisoners and State prisoners
+#Federal observations missing a lot of data so maybe best to work with state
+
+federal_crime <- crime %>%
+  filter(jurisdiction == "FEDERAL")
+
+state_crime <- crime %>%
+  filter(jurisdiction != "FEDERAL")
+```
+
+
+```{r ex-2}
+#population and prisoner proportions
+
+state_crime <- state_crime %>%
+  mutate(prisoner_per_pop = prisoner_count/state_population)
+
+state_crime %>%
+  arrange(desc(prisoner_per_pop)) %>%
+  select(jurisdiction, year, prisoner_count, state_population, prisoner_per_pop)
+
+state_crime %>%
+  arrange(state_population) %>%
+  select(jurisdiction, year, state_population)
+
+```
+We can see here that the 25 highest prisoner per population observations 
+are either Alaska or Delaware (two low population states, but not the lowest 
+two).
+
+Texas and Oklahoma are the only other states in the top 50 highest prisoner per 
+population observations.
+
+
+```{r ex-3}
+#We can use this new data set to look at the most recent data
+
+recent_state_crime <- state_crime %>%
+  filter(year == 2016)
+
+recent_state_crime %>%
+  arrange(desc(prisoner_per_pop)) %>%
+  select(jurisdiction, prisoner_per_pop)
+
+recent_state_crime %>%
+  arrange(desc(prisoner_count)) %>%
+  select(jurisdiction, prisoner_count)
+
+
+```
+We can see here that in 2016 Oklahoma had the highest proportion of population 
+imprisoned, while Texas had the highest raw number.
+
+We also observe that the only states in the top 10 `prisoners_per_pop` and the 
+top 10 `prisoner_count` are Texas, Florida, Arizona.
+
+
+
+
+```{r ex-4}
+
+ggplot(data = state_crime, 
+       mapping = aes(x = year,
+                     y = prisoner_per_pop,
+                     color = jurisdiction)) +
+  geom_point() + 
+  geom_smooth()
+```
+
