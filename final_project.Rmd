@@ -1,0 +1,14 @@
+---
+title: "Final Project:"
+subtitle: "American Crime and Incarceration"
+author: "PS I Love Yue: Oliver, Karam, Steven, Emely"
+output: pdf_document
+---
+
+```{r packages-data, warning=FALSE, message=FALSE}
+library(tidyverse)
+crime <- read_csv("data/crime_and_incarceration_by_state.csv") 
+```
+
+
+### Beginning of Project
