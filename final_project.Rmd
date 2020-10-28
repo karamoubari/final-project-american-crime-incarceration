@@ -71,18 +71,34 @@ imprisoned, while Texas had the highest raw number.
 We also observe that the only states in the top 10 `prisoners_per_pop` and the 
 top 10 `prisoner_count` are Texas, Florida, Arizona.
 
-
-
-
-
-```{r ex-4}
-
-ggplot(data = state_crime, 
+```{r}
+recent_state_crime %>%
+  ggplot(data = recent_state_crime, 
        mapping = aes(x = year,
                      y = prisoner_per_pop,
                      color = jurisdiction)) +
   geom_point() + 
   geom_smooth()
+```
+
+
+
+
+```{r ex-4}
+crime<- crime %>%
+  group_by(year)%>%
+  mutate(total_murder= sum(murder_manslaughter))
+
+crime<- crime %>%
+  group_by(year)%>%
+  mutate(total_vehicle_theft= sum(vehicle_theft))
+  
+ crime %>% 
+  ggplot(crime, mapping= aes(x=year, y=total_murder))+
+  geom_line()+
+  labs(title = "title",
+  x = "Year", y = "y") +
+  theme_linedraw()
 ```
 prison population
 
@@ -90,7 +106,7 @@ prison population
 "property_crime_total" is the sum of burglary, larceny, & vehicle_theft
 
 
-possible question: correlation between population and prison population
+possible question: correlation between population and prison population with bootstrapping/hypothesis test, comparing geographic region's prison populations 
 
 ```{r total-prisoners}
 crime<- crime %>%
