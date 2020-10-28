@@ -95,7 +95,7 @@ crime<- crime %>%
   
  crime %>% 
   ggplot(crime, mapping= aes(x=year, y=total_murder))+
-  geom_line()+
+  geom_point()+
   labs(title = "title",
   x = "Year", y = "y") +
   theme_linedraw()
@@ -210,4 +210,64 @@ crime<- crime %>%
    theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
+```{r}
+crime <- crime %>% 
+  mutate(region = case_when( 
+  jurisdiction == "MAINE" ~ "Northeast",
+jurisdiction == "NEW HAMPSHIRE" ~ "Northeast",
+jurisdiction == "VERMONT" ~ "Northeast",
+jurisdiction == "NEW YORK" ~ "Northeast",
+jurisdiction == "CONNECTICUT" ~ "Northeast",
+jurisdiction == "MASSACHUSETTS" ~ "Northeast",
+jurisdiction == "RHODE ISLAND" ~ "Northeast",
+jurisdiction == "PENNSYLVANIA" ~ "Northeast",
+jurisdiction == "NORTH DAKOTA" ~ "North Central",
+jurisdiction == "SOUTH DAKOTA" ~ "North Central",
+jurisdiction == "NEBRASKA" ~ "North Central",
+jurisdiction == "KANSAS" ~ "North Central",
+jurisdiction == "MISSOURI" ~ "North Central",
+jurisdiction == "IOWA" ~ "North Central",
+jurisdiction == "MINNESOTA" ~ "North Central",
+jurisdiction == "WISCONSIN" ~ "North Central",
+jurisdiction == "ILLINOIS" ~ "North Central",
+jurisdiction == "INDIANA" ~ "North Central",
+jurisdiction == "MICHIGAN" ~ "North Central",
+jurisdiction == "OHIO" ~ "North Central",
+jurisdiction == "TEXAS" ~ "South",
+jurisdiction == "OKLAHOMA" ~ "South",
+jurisdiction == "LOUISIANA" ~ "South",
+jurisdiction == "ARKANSAS" ~ "South",
+jurisdiction == "MISSISSIPPI" ~ "South",
+jurisdiction == "ALABAMA" ~ "South",
+jurisdiction == "GEORGIA" ~ "South",
+jurisdiction == "FLORIDA" ~ "South",
+jurisdiction == "TENNESSEE" ~ "South",
+jurisdiction == "SOUTH CAROLINA" ~ "South",
+jurisdiction == "NORTH CAROLINA" ~ "South",
+jurisdiction == "KENTUCKY" ~ "South",
+jurisdiction == "VIRGINIA" ~ "South",
+jurisdiction == "WEST VIRGINIA" ~ "South",
+jurisdiction == "MARYLAND" ~ "South",
+jurisdiction == "DELAWARE" ~ "South",
+jurisdiction == "ALASKA" ~ "West",
+jurisdiction == "HAWAII" ~ "West",
+jurisdiction == "NEW MEXICO" ~ "West",
+jurisdiction == "COLORADO" ~ "West",
+jurisdiction == "WYOMING" ~ "West",
+jurisdiction == "MONTANA" ~ "West",
+jurisdiction == "IDAHO" ~ "West",
+jurisdiction == "UTAH" ~ "West",
+jurisdiction == "ARIZONA" ~ "West",
+jurisdiction == "CALIFORNIA" ~ "West",
+jurisdiction == "NEVADA" ~ "West",
+jurisdiction == "OREGON" ~ "West",
+jurisdiction == "WASHINGTON" ~ "West"))
+
+ crime %>% 
+  ggplot(crime, mapping= aes(x=year, y=percent_pop))+
+  geom_line()+
+  labs(title = "title",
+  x = "Year", y = "Percent Population Incarcerated") +
+  theme_linedraw()
+```
 
