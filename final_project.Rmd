@@ -83,3 +83,79 @@ ggplot(data = state_crime,
   geom_smooth()
 ```
 
+
+```{r percent-pop}
+crime<- crime %>%
+  group_by(year)%>%
+  mutate(percent_pop= sum(prisoner_count)/sum(state_population))
+  
+ crime %>% 
+  ggplot(crime, mapping= aes(x=year, y=percent_pop))+
+  geom_line()+
+  labs(title = "title",
+  x = "Year", y = "Percent Population Incarcerated") +
+  theme_linedraw()
+```
+
+
+```{r Prisoners%-by-state-2001}
+crime<- crime %>%
+  filter(year == 2001)%>%
+  group_by(jurisdiction)%>%
+  mutate(prisoner_2001= prisoner_count/state_population)
+  
+ crime %>% 
+  ggplot(crime, mapping= aes(x= jurisdiction, y=prisoner_2001))+
+  geom_col()+
+  labs(title = "title",
+  x = "Year", y = "prisoners 2001") +
+  theme_linedraw()+ 
+   theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+"violent_crime_total" is the sum of murder_manslaughter, rape_legacy, robbery, & agg_assault by year and state
+"property_crime_total" is the sum of burglary, larceny, & vehicle_theft
+
+
+```{r total-prisoners}
+crime<- crime %>%
+  group_by(year)%>%
+  mutate(total_prisoner= sum(prisoner_count))
+  
+ crime %>% 
+  ggplot(crime, mapping= aes(x=year, y=total_prisoner))+
+  geom_line()+
+  labs(title = "title",
+  x = "Year", y = "Total US Prisoners") +
+  theme_linedraw()
+```
+
+```{r total-violent-crime}
+crime<- crime %>%
+  filter(!is.na(violent_crime_total))%>%
+  group_by(year)%>%
+  mutate(total_crime= sum(violent_crime_total))
+  
+ crime %>% 
+  ggplot(crime, mapping= aes(x=year, y=total_crime))+
+  geom_line()+
+  labs(title = "title",
+  x = "Year", y = "Total Violent Crime in the US") +
+  theme_linedraw()
+```
+
+```{r total-violent-crime-by-state}
+crime<- crime %>%
+  filter(!is.na(violent_crime_total))%>%
+  group_by(jurisdiction,year)%>%
+  mutate(total_crime= sum(violent_crime_total))
+  
+ crime %>% 
+  ggplot(crime, mapping= aes(x=year, y=total_crime))+
+  geom_line()+
+   facet_wrap(~jurisdiction)+
+  labs(title = "title",
+  x = "Year", y = "Total Violent Crime in the US") +
+  theme_linedraw()
+```
+
