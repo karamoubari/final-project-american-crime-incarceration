@@ -393,6 +393,6 @@ further to find possible causations for these trends.
 Last, we created linear models for each crime to see how they each changed
 between 2001 and 2016. Notice, all of these 7 crimes have a negative slope
 meaning they overall decreased during this time period. The slopes vary in 
-magnitude from about -7000 crimes/year to about -180,000 crimes/year
+magnitude from about -7000 crimes/year to about -180,000 crimes/year.
 
 
