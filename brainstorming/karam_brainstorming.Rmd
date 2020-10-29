@@ -12,7 +12,7 @@ crime <- read_csv("data/crime_and_incarceration_by_state.csv")
 
 ### Brainstorming and Messing Around
 
-```{r ex-1}
+```{r state-crime-dataset}
 #Seperate data between Federal prisoners and State prisoners
 #Federal observations missing a lot of data so maybe best to work with state
 
@@ -24,7 +24,7 @@ state_crime <- crime %>%
 ```
 
 
-```{r ex-2}
+```{r proportions}
 #population and prisoner proportions
 
 state_crime <- state_crime %>%
@@ -47,7 +47,7 @@ Texas and Oklahoma are the only other states in the top 50 highest prisoner per
 population observations.
 
 
-```{r ex-3}
+```{r recent}
 #We can use this new data set to look at the most recent data
 
 recent_state_crime <- state_crime %>%
@@ -210,58 +210,58 @@ crime <- crime %>%
 
 ```{r}
 crime <- crime %>% 
-  mutate(region = case_when( 
-  jurisdiction == "MAINE" ~ "Northeast",
-jurisdiction == "NEW HAMPSHIRE" ~ "Northeast",
-jurisdiction == "VERMONT" ~ "Northeast",
-jurisdiction == "NEW YORK" ~ "Northeast",
-jurisdiction == "CONNECTICUT" ~ "Northeast",
-jurisdiction == "MASSACHUSETTS" ~ "Northeast",
-jurisdiction == "RHODE ISLAND" ~ "Northeast",
-jurisdiction == "PENNSYLVANIA" ~ "Northeast",
-jurisdiction == "NORTH DAKOTA" ~ "North Central",
-jurisdiction == "SOUTH DAKOTA" ~ "North Central",
-jurisdiction == "NEBRASKA" ~ "North Central",
-jurisdiction == "KANSAS" ~ "North Central",
-jurisdiction == "MISSOURI" ~ "North Central",
-jurisdiction == "IOWA" ~ "North Central",
-jurisdiction == "MINNESOTA" ~ "North Central",
-jurisdiction == "WISCONSIN" ~ "North Central",
-jurisdiction == "ILLINOIS" ~ "North Central",
-jurisdiction == "INDIANA" ~ "North Central",
-jurisdiction == "MICHIGAN" ~ "North Central",
-jurisdiction == "OHIO" ~ "North Central",
-jurisdiction == "TEXAS" ~ "South",
-jurisdiction == "OKLAHOMA" ~ "South",
-jurisdiction == "LOUISIANA" ~ "South",
-jurisdiction == "ARKANSAS" ~ "South",
-jurisdiction == "MISSISSIPPI" ~ "South",
-jurisdiction == "ALABAMA" ~ "South",
-jurisdiction == "GEORGIA" ~ "South",
-jurisdiction == "FLORIDA" ~ "South",
-jurisdiction == "TENNESSEE" ~ "South",
-jurisdiction == "SOUTH CAROLINA" ~ "South",
-jurisdiction == "NORTH CAROLINA" ~ "South",
-jurisdiction == "KENTUCKY" ~ "South",
-jurisdiction == "VIRGINIA" ~ "South",
-jurisdiction == "WEST VIRGINIA" ~ "South",
-jurisdiction == "MARYLAND" ~ "South",
-jurisdiction == "DELAWARE" ~ "South",
-jurisdiction == "ALASKA" ~ "West",
-jurisdiction == "HAWAII" ~ "West",
-jurisdiction == "NEW MEXICO" ~ "West",
-jurisdiction == "COLORADO" ~ "West",
-jurisdiction == "WYOMING" ~ "West",
-jurisdiction == "MONTANA" ~ "West",
-jurisdiction == "IDAHO" ~ "West",
-jurisdiction == "UTAH" ~ "West",
-jurisdiction == "ARIZONA" ~ "West",
-jurisdiction == "CALIFORNIA" ~ "West",
-jurisdiction == "NEVADA" ~ "West",
-jurisdiction == "OREGON" ~ "West",
-jurisdiction == "WASHINGTON" ~ "West"))
+  mutate(region = case_when(
+    jurisdiction == "MAINE" ~ "Northeast",
+    jurisdiction == "NEW HAMPSHIRE" ~ "Northeast",
+    jurisdiction == "VERMONT" ~ "Northeast",
+    jurisdiction == "NEW YORK" ~ "Northeast",
+    jurisdiction == "CONNECTICUT" ~ "Northeast",
+    jurisdiction == "MASSACHUSETTS" ~ "Northeast",
+    jurisdiction == "RHODE ISLAND" ~ "Northeast",
+    jurisdiction == "PENNSYLVANIA" ~ "Northeast",
+    jurisdiction == "NORTH DAKOTA" ~ "North Central",
+    jurisdiction == "SOUTH DAKOTA" ~ "North Central",
+    jurisdiction == "NEBRASKA" ~ "North Central",
+    jurisdiction == "KANSAS" ~ "North Central",
+    jurisdiction == "MISSOURI" ~ "North Central",
+    jurisdiction == "IOWA" ~ "North Central",
+    jurisdiction == "MINNESOTA" ~ "North Central",
+    jurisdiction == "WISCONSIN" ~ "North Central",
+    jurisdiction == "ILLINOIS" ~ "North Central",
+    jurisdiction == "INDIANA" ~ "North Central",
+    jurisdiction == "MICHIGAN" ~ "North Central",
+    jurisdiction == "OHIO" ~ "North Central",
+    jurisdiction == "TEXAS" ~ "South",
+    jurisdiction == "OKLAHOMA" ~ "South",
+    jurisdiction == "LOUISIANA" ~ "South",
+    jurisdiction == "ARKANSAS" ~ "South",
+    jurisdiction == "MISSISSIPPI" ~ "South",
+    jurisdiction == "ALABAMA" ~ "South",
+    jurisdiction == "GEORGIA" ~ "South",
+    jurisdiction == "FLORIDA" ~ "South",
+    jurisdiction == "TENNESSEE" ~ "South",
+    jurisdiction == "SOUTH CAROLINA" ~ "South",
+    jurisdiction == "NORTH CAROLINA" ~ "South",
+    jurisdiction == "KENTUCKY" ~ "South",
+    jurisdiction == "VIRGINIA" ~ "South",
+    jurisdiction == "WEST VIRGINIA" ~ "South",
+    jurisdiction == "MARYLAND" ~ "South",
+    jurisdiction == "DELAWARE" ~ "South",
+    jurisdiction == "ALASKA" ~ "West",
+    jurisdiction == "HAWAII" ~ "West",
+    jurisdiction == "NEW MEXICO" ~ "West",
+    jurisdiction == "COLORADO" ~ "West",
+    jurisdiction == "WYOMING" ~ "West",
+    jurisdiction == "MONTANA" ~ "West",
+    jurisdiction == "IDAHO" ~ "West",
+    jurisdiction == "UTAH" ~ "West",
+    jurisdiction == "ARIZONA" ~ "West",
+    jurisdiction == "CALIFORNIA" ~ "West",
+    jurisdiction == "NEVADA" ~ "West",
+    jurisdiction == "OREGON" ~ "West",
+    jurisdiction == "WASHINGTON" ~ "West"))
 
- crime %>% 
+crime %>%
   ggplot(crime, mapping= aes(x=year, y=percent_pop))+
   geom_line()+
   labs(title = "title",
