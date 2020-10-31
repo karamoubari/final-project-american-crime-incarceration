@@ -120,6 +120,7 @@ crime<- crime %>%
   x = "Year", y = "Total US Prisoners") +
   theme_linedraw()
 ```
+
 ```{r total-property-crime}
 crime<- crime %>%
   filter(!is.na(property_crime_total))%>%
@@ -134,6 +135,7 @@ crime<- crime %>%
   theme_linedraw()
 ```
 
+
 ```{r total-violent-crime}
 crime<- crime %>%
   filter(!is.na(violent_crime_total))%>%
@@ -147,6 +149,7 @@ crime<- crime %>%
   x = "Year", y = "Total Violent Crime in the US") +
   theme_linedraw()
 ```
+
 
 ```{r total-violent-crime-by-state}
 crime<- crime %>%
@@ -180,7 +183,6 @@ crime<- crime %>%
 ```
 
 
-
 ```{r percent-pop}
 crime<- crime %>%
   group_by(year)%>%
@@ -194,8 +196,7 @@ crime<- crime %>%
   theme_linedraw()
 ```
 
-
-```{r Prisoners%-by-state-2001}
+```{r Prisoners-by-state-2001}
 crime<- crime %>%
   filter(year == 2001)%>%
   group_by(jurisdiction)%>%
