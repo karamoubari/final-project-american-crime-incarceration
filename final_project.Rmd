@@ -416,3 +416,88 @@ meaning they overall decreased during this time period. The slopes vary in
 magnitude from about -7000 crimes/year to about -180,000 crimes/year.
 
 
+```{r crime-by-region}
+
+# crime <- crime %>% 
+#   mutate(region = case_when( 
+#   jurisdiction == "MAINE" ~ "Northeast",
+#   jurisdiction == "NEW HAMPSHIRE" ~ "Northeast",
+#   jurisdiction == "VERMONT" ~ "Northeast",
+#   jurisdiction == "NEW YORK" ~ "Northeast",
+#   jurisdiction == "CONNECTICUT" ~ "Northeast",
+#   jurisdiction == "NEW JERSEY" ~ "Northeast",
+#   jurisdiction == "MASSACHUSETTS" ~ "Northeast",
+#   jurisdiction == "RHODE ISLAND" ~ "Northeast",
+#   jurisdiction == "PENNSYLVANIA" ~ "Northeast",
+#   jurisdiction == "NORTH DAKOTA" ~ "North Central",
+#   jurisdiction == "SOUTH DAKOTA" ~ "North Central",
+#   jurisdiction == "NEBRASKA" ~ "North Central",
+#   jurisdiction == "KANSAS" ~ "North Central",
+#   jurisdiction == "MISSOURI" ~ "North Central",
+#   jurisdiction == "IOWA" ~ "North Central",
+#   jurisdiction == "MINNESOTA" ~ "North Central",
+#   jurisdiction == "WISCONSIN" ~ "North Central",
+#   jurisdiction == "ILLINOIS" ~ "North Central",
+#   jurisdiction == "INDIANA" ~ "North Central",
+#   jurisdiction == "MICHIGAN" ~ "North Central",
+#   jurisdiction == "OHIO" ~ "North Central",
+#   jurisdiction == "TEXAS" ~ "South",
+#   jurisdiction == "OKLAHOMA" ~ "South",
+#   jurisdiction == "LOUISIANA" ~ "South",
+#   jurisdiction == "ARKANSAS" ~ "South",
+#   jurisdiction == "MISSISSIPPI" ~ "South",
+#   jurisdiction == "ALABAMA" ~ "South",
+#   jurisdiction == "GEORGIA" ~ "South",
+#   jurisdiction == "FLORIDA" ~ "South",
+#   jurisdiction == "TENNESSEE" ~ "South",
+#   jurisdiction == "SOUTH CAROLINA" ~ "South",
+#   jurisdiction == "NORTH CAROLINA" ~ "South",
+#   jurisdiction == "KENTUCKY" ~ "South",
+#   jurisdiction == "VIRGINIA" ~ "South",
+#   jurisdiction == "WEST VIRGINIA" ~ "South",
+#   jurisdiction == "MARYLAND" ~ "South",
+#   jurisdiction == "DELAWARE" ~ "South",
+#   jurisdiction == "ALASKA" ~ "West",
+#   jurisdiction == "HAWAII" ~ "West",
+#   jurisdiction == "NEW MEXICO" ~ "West",
+#   jurisdiction == "COLORADO" ~ "West",
+#   jurisdiction == "WYOMING" ~ "West",
+#   jurisdiction == "MONTANA" ~ "West",
+#   jurisdiction == "IDAHO" ~ "West",
+#   jurisdiction == "UTAH" ~ "West",
+#   jurisdiction == "ARIZONA" ~ "West",
+#   jurisdiction == "CALIFORNIA" ~ "West",
+#   jurisdiction == "NEVADA" ~ "West",
+#   jurisdiction == "OREGON" ~ "West",
+#   jurisdiction == "WASHINGTON" ~ "West"))
+# 
+# view(crime)
+# 
+# year_crime<- crime %>%
+#   group_by(year, region) %>%
+#   summarise(total_burglary = sum(burglary, na.rm = T),
+#             total_vehicle_theft = sum(vehicle_theft, na.rm = T),
+#             total_property_crime = sum(property_crime_total, na.rm = T),
+#             total_larceny = sum(larceny, na.rm = T))
+# 
+# year_crime <- year_crime %>%
+#   filter(!is.na(region))
+# 
+# view(year_crime)
+# 
+# 
+# ggplot(year_crime, aes(x=year)) + 
+#   geom_line(aes(y = total_burglary, colour = "Total Burglary")) + 
+#   geom_line(aes(y = total_larceny, colour = "Total Larceny")) +
+#   geom_line(aes(y = total_vehicle_theft, colour = "Total Vehicle Theft")) +
+#   geom_line(aes(y = total_property_crime, colour = "Total Property Crime")) +
+#   scale_colour_manual("", 
+#                       breaks = c("Total Burglary", "Total Larceny", "Total Vehicle Theft", "Total Property Crime"),
+#                       values = c("red3", "steelblue", "springgreen4", "orangered2")) +
+#   facet_wrap(~region) + 
+#   scale_y_continuous(name="Number of Crimes", labels = scales::comma) +
+#   labs(title = "Yearly Crime by Region in the United States")
+
+```
+
+
