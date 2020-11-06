@@ -26,6 +26,8 @@ Within the dataset there are 816 rows and 17 variables. The variables included i
 
 ```{r packages-data, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
+library(broom)
+library(sf)
 crime <- read_csv("data/crime_and_incarceration_by_state.csv") 
 ```
 
@@ -37,7 +39,34 @@ federal_crime <- crime %>%
 
 state_crime <- crime %>%
   filter(jurisdiction != "FEDERAL")
+
+state_crime <- state_crime %>%
+  group_by(year)%>%
+  mutate(percent_pop = sum(prisoner_count)/sum(state_population))
+  
 ```
+
+```{r us-map-shapefile}
+# install.packages("devtools")
+# devtools::install_github("UrbanInstitute/urbnmapr")
+```
+
+
+```{r prisoner-prop-map}
+
+# library(tidyverse)
+# library(urbnmapr)
+# 
+# states_sf <- get_urbn_map("states", sf = TRUE)
+# 
+# states_sf %>% 
+#   ggplot(aes()) +
+#   geom_sf(fill = "grey", color = "#ffffff")
+
+```
+
+
+
 
 
 Political rhetoric that has come to the forefront in recent decades is the idea 
