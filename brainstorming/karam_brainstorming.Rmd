@@ -31,12 +31,17 @@ state_crime <- state_crime %>%
   mutate(prisoner_per_pop = prisoner_count/state_population)
 
 state_crime %>%
-  arrange(desc(prisoner_per_pop)) %>%
+  arrange(jurisdiction) %>%
   select(jurisdiction, year, prisoner_count, state_population, prisoner_per_pop)
 
-state_crime %>%
-  arrange(state_population) %>%
-  select(jurisdiction, year, state_population)
+
+# state_crime %>%
+#   arrange(desc(prisoner_per_pop)) %>%
+#   select(jurisdiction, year, prisoner_count, state_population, prisoner_per_pop)
+# 
+# state_crime %>%
+#   arrange(state_population) %>%
+#   select(jurisdiction, year, state_population)
 
 ```
 We can see here that the 25 highest prisoner per population observations 

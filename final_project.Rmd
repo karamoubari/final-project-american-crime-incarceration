@@ -62,29 +62,46 @@ federal_crime <- crime %>%
 state_crime <- crime %>%
   filter(jurisdiction != "FEDERAL")
 
-state_crime <- state_crime %>%
-  group_by(year)%>%
-  mutate(percent_pop = sum(prisoner_count)/sum(state_population))
-  
-```
-
-```{r us-map-shapefile}
-# install.packages("devtools")
-# devtools::install_github("UrbanInstitute/urbnmapr")
 ```
 
 
-```{r prisoner-prop-map}
+```{r prisoner-prop-map, echo = FALSE}
+prop_pris_2001 <- state_crime %>%
+  filter(year == 2001) %>%
+  mutate(prisoner_per_pop = prisoner_count/state_population) %>%
+  mutate(region = tolower(jurisdiction)) %>%
+  select(region, prisoner_per_pop)
 
-# library(tidyverse)
-# library(urbnmapr)
-# 
-# states_sf <- get_urbn_map("states", sf = TRUE)
-# 
-# states_sf %>% 
-#   ggplot(aes()) +
-#   geom_sf(fill = "grey", color = "#ffffff")
 
+states_map <- map_data("state")
+prop_map_2001 <- left_join(states_map, 
+                           prop_pris_2001, 
+                           by = "region" )
+
+
+ggplot(prop_map_2001, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill = prisoner_per_pop)) +
+  scale_fill_viridis_c(option = "B") + 
+  labs(title = "2001 Prisoner Proportions")
+
+
+prop_pris_2016 <- state_crime %>%
+  filter(year == 2016) %>%
+  mutate(prisoner_per_pop = prisoner_count/state_population) %>%
+  mutate(region = tolower(jurisdiction)) %>%
+  select(region, prisoner_per_pop)
+
+
+states_map <- map_data("state")
+prop_map_2016 <- left_join(states_map, 
+                           prop_pris_2016, 
+                           by = "region" )
+
+
+ggplot(prop_map_2016, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill = prisoner_per_pop)) +
+  scale_fill_viridis_c(option = "B") + 
+  labs(title = "2016 Prisoner Proportions")
 ```
 
 
@@ -293,7 +310,7 @@ ggplot(data = crime_props, mapping = aes(x = year)) +
   geom_line(aes(y = total_rape_legacy_prop), color = "red",linetype="twodash") +
   geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
   geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
- geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
+  geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
   geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
   geom_line(aes(y = total_burglary_prop), color = "pink") +
   geom_line(aes(y = total_larceny_prop), color = "orange") +
@@ -460,7 +477,6 @@ vehicle_theft_model <- lm(vehicle_theft ~ year, data = totals_by_year)
 tidy(vehicle_theft_model)
 
 ```
-
 
 Here we attempted to answer whether different types of crime change together
 over the years or if different crimes fluctuate in different years. We used 
