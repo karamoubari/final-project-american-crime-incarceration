@@ -7,6 +7,7 @@ output: pdf_document
 
 ### Introduction
 The United States currently has the highest prison population in the world at around 2,094,000. This situation can be traced back to the 1970s, when politicians like Richard Nixon, Ronald Reagan, and more began the War on Drugs and began promoting “tough on crime” agendas. All this is despite scholars of the time believing prisons might have been abolished entirely, as crime and imprisonment rates were at an all time low. Mass incarceration has resulted in many racial disparities—  disproportionately affecting Black men in particular. These racial disparities are functionally seen by many as modern-day Jim Crow laws which were outlawed in the 1960s.
+<<<<<<< HEAD
 Rates of imprisonment have continued to increase under the guise of “public safety.” However, the reality is that the US’s crime rates are comparable to countries with similar economies, yet the rate of incarceration is significantly higher. The US has only 5% of the world’s population, and yet it houses 25% of the world’s incarcerated persons. The racial, social, and economic implications of this statistic are what we intend to explore in this project.
 
 With this context and data set, we are hoping to answer a variety of questions such as the following :
@@ -16,33 +17,22 @@ With this context and data set, we are hoping to answer a variety of questions s
 3) How do trends in different crimes compare to each other? Do they move together or do they change individually?
 4) How does crime differ for different regions of the US?
 
+=======
+Rates of imprisonment have continued to increase under the guise of “public safety.” However, the reality is that the US’s crime rates are comparable to countries with similar economies, yet the rate of incarceration is significantly higher. The US has only 5% of the world’s population, and yet it houses 25% of the world’s incarcerated persons. The racial, social, and economic implications of this statistic are what we intend to explore in this project. 
+With this context and data set, we are hoping to answer a variety of questions. Namely, what trends can we find in the data? Can we point to specific policy that might have caused the imprisonment rates to be as high or as low as they are in a specific year? Is there evidence to suggest that higher rates of imprisonment do create safety, whether by deterring crime or by severely punishing it? Does a state’s (typical) party affiliation affect their rate of incarceration, or is this an issue that goes beyond party lines? Are states with a high percentage of people of color more prone to higher rates of incarceration? 
+>>>>>>> 7f1a0b120e5cafd1873a6ab01478c86449b92b14
 Though it is difficult to point to a single question that we may be able to answer using this dataset, we are confident that through thorough analysis of the Crime and Incarceration Data Set, we will be able to critically analyze the rhetoric that is often used to defend the US’ prison system and investigate common misconceptions regarding the root causes of crime and incarceration. 
 We will likely have to do research outside of this data set to create a strong narrative depending on which direction our project takes us. We have found an additional dataset which includes census data that could be used to find correlations between state and prison demographics. The exact trend or correlation that we will be investigating is not perfectly clear yet, research and analysis of this dataset will reveal interesting information about the US prison system.
+
+### Research Questions
+1) How do trends in different crimes compare to each other? (Do they move together or do they change indivisually?)
+2) How does crime differ for different regions of the US? (Make a color coded US map)
+3) Is there a relationship between proportion of population incarcerated and party affiliation in American states?
+4) How does policy impact incarceration? (an example of this is the changing definition of rape)
 
 ### Data Description
 “The Bureau of Justice Statistics administers the National Prisoners Statistics Program (NPS), an annual data collection effort that began in response to a 1926 congressional mandate. The Uniform Crime Report (UCR) has served as the FBI's primary national data collection tool since a 1930 congressional mandate directed the Attorney General to ‘acquire, collect, classify, and preserve identification, criminal identification, crime, and other records.’ The FBI collects this information voluntarily submitted by local, state, and federal law enforcement agencies.” The user who updated this dataset used the raw data from the NPS and wrangled it in python to create the variables and observations. 
 Within the dataset there are 816 rows and 17 variables. The variables included in the set are US state, whether or not the data for that entry includes jails, the year, prisoner count on December 31st, whether or not the state in the data entry changed their system for reporting crime in comparison to previous years, whether or not crime totals are estimated, and numbers of: total state population, violent crimes, murders or manslaughters, rapes (using the old definition), rapes (using the new definition), robberies, aggravated assaults, property crime, burglaries, larceny, and vehicle theft. 
-
-### Methodology
-
-The following variables, from the original dataset, were used to address the research questions above:\newline
-* **year**:\newline
-* **prisoner_count**:\newline
-* **state_population**:\newline
-* **violent_crime_total**:\newline
-* **murder_manslaughter**:\newline
-* **rape_legacy**:\newline
-* **rape_revised**:\newline
-* **robbery**:\newline
-* **agg_assault**:\newline
-* **property_crime_total**:\newline
-* **burglary**:\newline
-* **larceny**:\newline
-* **vehicle_theft**:\newline
-* **total_prisoner**:\newline
-* **total_violent_crime**:\newline
-* **total_crime**:\newline
-
 
 \newpage
 
@@ -89,8 +79,7 @@ state_crime <- state_crime %>%
 
 
 
-### Research Question #1 
-### Is there a relationship between proportion of population incarcerated and party affiliation in American states?
+
 
 Political rhetoric that has come to the forefront in recent decades is the idea 
 of law and order, being tough on crime, and ensuring punishment to the fullest 
@@ -116,8 +105,8 @@ crime <- crime %>%
 Above is the total prisoners in all 50 US states from 2001 to 2016. The graph 
 shows a steady incline from 2001 to 2008 and then a steady decline followed by a 
 sharp decline thereafter. Drawing attention to the range of the y-axis, we can 
-see that despite these sharp declines, the number of incarcerated individuals at 
-the lowest point was still above 1.19 million, which is still much higher 
+see thar despite these sharp declines, the number of incarcerated individuals at 
+the lowest point was still above 1.19 million, which is still infinitely higher 
 than the rate of incarceration in other countries.
 
 ```{r total-violent-crime, echo = FALSE}
@@ -159,7 +148,6 @@ crime<- crime %>%
  crime %>%
   ggplot(crime, mapping= aes(x=year, y=total_crime))+
   geom_line()+
-  scale_y_continuous(name="Count", labels = scales::comma) +
   labs(title = "Total Crime in the US",
   x = "Year", y = "Count") +
   theme_linedraw()
@@ -177,10 +165,6 @@ how much or how little crime is being committed and is instead due to other
 factors which we will explore later in our analyses. Possible explanations might 
 be policy changes, new sentencing guidelines, amount of policing, and a plethora 
 of other reasons.
-
-
-###Wouldn't this show a correlation between decreasing incarceration and decreasing crime rates?
-
 
 
 ```{r percent-pop, echo = FALSE}
@@ -203,10 +187,7 @@ US Prison Population graph. However, that being said, even if the population is
 increasing, if the crime rate is staying the same, or decreasing as we observed
 previously, there is still no valid reason to incarcerate more people.
 
-###I feel like this doesn't answer the question above, so change the question or add political stuff?
-
-### Research Question #2 
-### How does policy impact incarceration? This will be explored through the lens of changing definition of rape
+### Steven
 
 ### Impact of Changing the Definition of Rape
 ```{r creation-of-rape-data-set, echo = FALSE}
@@ -236,23 +217,34 @@ crime_rape<- crime_rape %>%
                 Blue = Total Number of Prisoners convicted of rape
                         by the Revised Definition in state custody")
 ```
-In 2012 the FBI changed their definition of rape from:
-"The old definition was 'The carnal knowledge of a female forcibly and against
-her will.' Many agencies interpreted this definition as excluding a long list
-of sex offenses that are criminal in most jurisdictions, such as offenses
-involving oral or anal penetration, penetration with objects, and rapes of
-males.
+In 2012 the FBI changed their definition of rape from "The carnal knowledge of
+a female forcibly and against her will,” to, “'Penetration, no matter how 
+slight, of the vagina or anus with any body part or object, or oral penetration
+by a sex organ of another person, without the consent of the victim.”
  
-to:
-The new Summary definition of Rape is: 'Penetration, no matter how slight, of
-the vagina or anus with any body part or object, or oral penetration by a sex
-organ of another person, without the consent of the victim.'"
- 
-We wanted to see how the change in definition affected the number of
-prisoners convicted for rape. Based on the graph, it seems like after the new
-definition was implemented, the number of prisoners who are incarcerated for
-rape increased. We will perform tests to find the p-value and try to
-determine if this is a correlation relationship or a causal relationship.
+We wanted to see how the change in definition affected the number of prisoners 
+convicted for rape. Based on the graph, it seems like after the new definition 
+was implemented, the number of prisoners who are incarcerated for rape 
+increased. We will perform tests to find the p-value and try to determine if 
+this is correlation or a causal relationship.
+
+This one change in policy had obvious impacts on the number of people 
+incarcerated for the crime. While it is only a small example, it supports 
+theories on incarceration that emphasize the role of laws and policies on the 
+number of people incarcerated rather than the actual number of crimes committed.
+This is assuming a causal relationship between the policy change and the number 
+of people incarcerated.
+The creation and enforcement of policy has a greater impact on who is 
+incarcerated and how many people are incarcerated for each crime than the 
+actual rate of crime. Despite public perception assuming the opposite 
+relationship. Many times the policies can be used to adjust a narrative to 
+support a political movement or idea at the time. Crime rates can increase when 
+policy is adjusted to include more crime as seen with the change in defintion 
+for rape. This is not to say that this change contributed significantly to mass
+incarceration or that the change in definition was unjust. Rather, this example
+in our data exemplifies the impact of policies on incarceration rather than 
+crime rate.
+
  
 https://ucr.fbi.gov/recent-program-updates/new-rape-definition-
 frequently-asked-questions
@@ -311,9 +303,6 @@ ggplot(data = crime_props, mapping = aes(x = year)) +
                 Orange = Proportion of larceny
                 Magenta = Proportion of vehicle theft")
 ```
-
-###STEVEN CAN YOU FIX THIS GRAPH TO NOT HAVE COMMENT LOOK WEIRD?
-
 ```{r proportion-of-crimes-including-larcency-2, echo = FALSE, warning=FALSE, message=FALSE}
 ggplot(data = crime_props, mapping = aes(x = year)) +
   geom_line(aes(y = total_rape_legacy_prop), color = "red", linetype="twodash") +
@@ -346,20 +335,18 @@ ggplot(data = crime_props, mapping = aes(x = year)) +
             (not including federal incarcerated people)")
 ```
 We wanted to see how the proportions of crimes were divided among the
-prior population. Also we wanted to see whether violent or non-violent crimes
+prion population. Also we wanted to see whether violent or non-violent crimes
 were represented more among the prison population. It appears that non violent
 crimes make up a larger proportion of the prison population than violent crimes.
-Generally, violent and non-violent crimes are decreasing in regards to 
-proportion of the prison population. Nonviolent crimes seem to be decreasing at 
-a faster rate than violent crimes. Larceny makes up the largest proportion of 
-crimes in the prison population. So we took it out for the second visualization
+Generally, violent and non-violent crimes are decreasing the proportion of the
+prison population. Nonviolent crimes seem to be decreasing at a faster rate
+than violent crimes. Larceny makes up the largest proportion of crimes
+in the prison population. So we took it out for the second visualization
 to get a better look at the other crimes. Murder and manslaughter make up the
 smallest proportion.
 
-###How does what you did tie into the original rape question you were finding answers to?
+### Crime by year
 
-### Research Question #3 
-### How do trends in different crimes compare to each other? Do they move together or do they change individually?
 
 ```{r new-dataset, echo = FALSE, warning=FALSE, message=FALSE}
 totals_by_year <- state_crime %>%
@@ -475,17 +462,13 @@ make objective claims about this data. One notable feature we noticed was that
 there was a peak for many crimes between 2004 and 2008. We plan to research 
 further to find possible causations for these trends.
 
-###Do the research^^?
-
 Last, we created linear models for each crime to see how they each changed
 between 2001 and 2016. Notice, all of these 7 crimes have a negative slope
 meaning they overall decreased during this time period. The slopes vary in 
 magnitude from about -7000 crimes/year to about -180,000 crimes/year.
 
 
-### Research Question #4
-### How does crime differ for different regions of the US?
-```{r crime-by-region, echo=FALSE, warning = FALSE, message = FALSE}
+```{r crime-by-region}
 
 crime <- crime %>%
   mutate(region = case_when(
@@ -540,6 +523,8 @@ crime <- crime %>%
   jurisdiction == "OREGON" ~ "West",
   jurisdiction == "WASHINGTON" ~ "West"))
 
+view(crime)
+
 year_crime<- crime %>%
   group_by(year, region) %>%
   summarise(total_burglary = sum(burglary, na.rm = T),
@@ -549,6 +534,8 @@ year_crime<- crime %>%
 
 year_crime <- year_crime %>%
   filter(!is.na(region))
+
+view(year_crime)
 
 
 ggplot(year_crime, aes(x=year)) +
@@ -564,9 +551,8 @@ ggplot(year_crime, aes(x=year)) +
   labs(title = "Yearly Crime by Region in the United States",
        subtitle = "Total Property crime = sum of other 3 crimes")
 
-view(crime)
-
 ```
+<<<<<<< HEAD
 To see how crime differs by region, we made a variable called `region` which 
 splits up the United States into 4 distinct regions (North Central, Northeast, 
 South, and West). We decided to look at only property crime (burglary, larceny, 
@@ -603,4 +589,7 @@ committed.
 
 
 ###More hypothesis tests?
+=======
+
+>>>>>>> 7f1a0b120e5cafd1873a6ab01478c86449b92b14
 
