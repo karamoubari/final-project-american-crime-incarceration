@@ -7,7 +7,7 @@ output: pdf_document
 
 ### Introduction
 The United States currently has the highest prison population in the world at around 2,094,000. This situation can be traced back to the 1970s, when politicians like Richard Nixon, Ronald Reagan, and more began the War on Drugs and began promoting “tough on crime” agendas. All this is despite scholars of the time believing prisons might have been abolished entirely, as crime and imprisonment rates were at an all time low. Mass incarceration has resulted in many racial disparities—  disproportionately affecting Black men in particular. These racial disparities are functionally seen by many as modern-day Jim Crow laws which were outlawed in the 1960s.
-Rates of imprisonment have continued to increase under the guise of “public safety.” However, the reality is that the US’s crime rates are comparable to countries with similar economies, yet the rate of incarceration is significantly higher. The US has only 5% of the world’s population, and yet it houses 25% of the world’s incarcerated persons. The racial, social, and economic implications of this statistic are what we intend to explore in this project. 
+Rates of imprisonment have continued to increase under the guise of “public safety.” However, the reality is that the US’s crime rates are comparable to countries with similar economies, yet the rate of incarceration is significantly higher. The US has only 5% of the world’s population, and yet it houses 25% of the world’s incarcerated persons. The racial, social, and economic implications of this statistic are what we intend to explore in this project.
 
 With this context and data set, we are hoping to answer a variety of questions such as the following :
 
@@ -561,7 +561,8 @@ ggplot(year_crime, aes(x=year)) +
                       values = c("red3", "steelblue", "springgreen4", "orangered2")) +
   facet_wrap(~region) +
   scale_y_continuous(name="Number of Crimes", labels = scales::comma) +
-  labs(title = "Yearly Crime by Region in the United States")
+  labs(title = "Yearly Crime by Region in the United States",
+       subtitle = "Total Property crime = sum of other 3 crimes")
 
 view(crime)
 
@@ -601,5 +602,5 @@ to not choose the south, although they are on a decline in property crimes
 committed. 
 
 
-###Should we ask Yue if it's ok to have multiple research questions that are seperate or do we need to tie them together with one central one?
+###More hypothesis tests?
 
