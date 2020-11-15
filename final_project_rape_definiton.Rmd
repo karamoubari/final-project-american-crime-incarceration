@@ -1,0 +1,158 @@
+---
+title: "rape_definiton"
+output: pdf_document
+---
+```{r packages-data, warning=FALSE, message=FALSE}
+library(tidyverse)
+crime <- read_csv("data/crime_and_incarceration_by_state.csv") 
+```
+
+### Impact of Changing the Definition of Rape
+
+```{r creation-of-rape-data-set}
+crime_rape <- crime
+
+crime_rape[is.na(crime_rape)] <- 0
+```
+
+```{r ggplot-of-rape-convictions}
+crime_rape<- crime_rape %>%
+  group_by(year)%>%
+  mutate(total_rape_legacy= sum(rape_legacy))
+
+crime_rape<- crime_rape %>%
+  group_by(year)%>%
+  mutate(total_rape_revised= sum(rape_revised))
+
+  ggplot(data = crime_rape, 
+       mapping = aes(x = year)) +
+  geom_line(aes(y = total_rape_legacy), color = "red") + 
+    geom_line(aes(y = total_rape_revised), color = "blue") +
+    geom_vline(xintercept = 2012) +
+    labs(title = "",
+     x = "Year", 
+     y = "Number of Rape Cases",
+     caption = "Red = Total Number of Prisoners convicted of rape 
+                      by the Legacy Definition in state custody 
+                Blue = Total Number of Prisoners convicted of rape 
+                        by the Revised Definition in state custody")
+```
+In 2012 the FBI changed their definition of rape from: 
+"The old definition was 'The carnal knowledge of a female forcibly and against 
+her will.' Many agencies interpreted this definition as excluding a long list 
+of sex offenses that are criminal in most jurisdictions, such as offenses 
+involving oral or anal penetration, penetration with objects, and rapes of 
+males.
+
+to:
+The new Summary definition of Rape is: 'Penetration, no matter how slight, of 
+the vagina or anus with any body part or object, or oral penetration by a sex 
+organ of another person, without the consent of the victim.'"
+
+We wanted to see how the change in definition affected the number of 
+prisoners convicted for rape. Based on the graph, it seems like after the new 
+definition was implemented, the number of prisoners who are incarcerated for 
+rape increased. We will perform tests to find the pvalue and try to 
+determine if this is a correlation relationship or a causal relationship. 
+
+https://ucr.fbi.gov/recent-program-updates/new-rape-definition-
+frequently-asked-questions
+
+### Proportions of Crime in the United States 
+
+```{r creating-proportion-variables}
+crime_props <- crime %>%
+  filter(jurisdiction != "FEDERAL") %>%
+  mutate(violent_crime_total_prop = (violent_crime_total / prisoner_count)) %>%
+  mutate(rape_legacy_prop = (rape_legacy / prisoner_count)) %>%
+  mutate(murder_manslaughter_prop = (murder_manslaughter / prisoner_count)) %>%
+  mutate(rape_revised_prop = (rape_revised / prisoner_count)) %>%
+  mutate(robbery_prop = (robbery / prisoner_count)) %>%
+  mutate(agg_asssault_prop = (agg_assault / prisoner_count)) %>%
+  mutate(property_crime_total_prop = (property_crime_total / prisoner_count)) %>%
+  mutate(burglary_prop = (burglary / prisoner_count)) %>%
+  mutate(larceny_prop = (larceny / prisoner_count)) %>%
+  mutate(vehicle_theft_prop = (vehicle_theft / prisoner_count))
+  
+crime_props <- crime_props %>%
+  group_by(year) %>%
+  mutate(total_rape_legacy_prop = (sum(rape_legacy_prop)/sum(prisoner_count))) %>%
+  mutate(total_murder_manslaughter_prop = (sum(murder_manslaughter_prop)/sum(prisoner_count))) %>%
+  mutate(total_rape_revised_prop = (sum(rape_revised_prop)/sum(prisoner_count))) %>%
+  mutate(total_robbery_prop = (sum(robbery_prop)/sum(prisoner_count))) %>%
+  mutate(total_agg_assault_prop = (sum(agg_asssault_prop)/sum(prisoner_count))) %>%
+  mutate(total_burglary_prop = (sum(burglary_prop)/sum(prisoner_count))) %>%
+  mutate(total_larceny_prop = (sum(larceny_prop)/sum(prisoner_count))) %>%
+  mutate(total_vehicle_theft_prop = (sum(vehicle_theft_prop)/sum(prisoner_count))) %>%
+  mutate(total_violent_crime_total = (sum(violent_crime_total_prop)/sum(prisoner_count))) %>%
+  mutate(total_property_crime_total = (sum(property_crime_total_prop)/sum(prisoner_count)))
+
+view(crime_props)
+```
+
+```{r proportion-of-crimes-including-larcency}
+ggplot(data = crime_props, mapping = aes(x = year)) +
+  geom_line(aes(y = total_rape_legacy_prop), color = "red",linetype="twodash") +
+  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
+  geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
+  geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
+  geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
+  geom_line(aes(y = total_burglary_prop), color = "pink") +
+  geom_line(aes(y = total_larceny_prop), color = "orange") +
+  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta")
+  labs(title = "",
+     x = "Year", 
+     y = "Proportion of prisoners convicted of each crime
+            (not including federal incarcerated people)",
+     caption = "Red = Proportion of Rape by legacy definiton
+                Blue = Proportion of murder/manslaughter
+                Green = Proportion of Rape by revised definition
+                Yellow = Proportion of robbery
+                Purple = Proportion of aggravated assault
+                Pink = Proportion of burglary
+                Orange = Proportion of larceny
+                Magenta = Proportion of vehicle theft")
+```
+
+```{r proportion-of-crimes-including-larcency}
+ggplot(data = crime_props, mapping = aes(x = year)) +
+  geom_line(aes(y = total_rape_legacy_prop), color = "red", linetype="twodash") +
+  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
+  geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
+  geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
+  geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
+  geom_line(aes(y = total_burglary_prop), color = "pink") +
+  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta") +
+  labs(title = "",
+     x = "Year", 
+     y = "Proportion of prisoners convicted of each crime
+            (not including federal incarcerated people)",
+     caption = "Red = Proportion of Rape by legacy definiton
+                Blue = Proportion of murder/manslaughter
+                Green = Proportion of Rape by revised definition
+                Yellow = Proportion of robbery
+                Purple = Proportion of aggravated assault
+                Pink = Proportion of burglary
+                Magenta = Proportion of vehicle theft")
+```
+
+```{r plot-violent-nonviolent-crimes}
+ggplot(data = crime_props, mapping = aes(x = year)) +
+  geom_line(aes(y = total_violent_crime_total), color = "red") +
+  geom_line(aes(y = total_property_crime_total), color = "blue") +
+  labs(title = "",
+     x = "Year", 
+     y = "Proportion of prisoners convicted of each type of crime
+            (not including federal incarcerated people)")
+```
+
+We wanted to see how the proportions of crimes were divided among the 
+prion population. Also we wanted to see whether violent or non-violent crimes
+were represented more among the prison population. It appears that non violent
+crimes make up a larger proportion of the prison population than violent crimes.
+Generally, violent and non-violent crimes are decreasing the proportion of the 
+prison population. Nonviolent crimes seem to be decreasing at a faster rate
+than violent crimes. Larceny makes up the largest proportion of crimes
+in the prison population. So we took it out for the second visualization
+to get a better look at the other crimes. Murder and manslaughter make up the
+smallest proportion.
