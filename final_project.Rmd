@@ -15,6 +15,10 @@ property crimes.
 
 
 ## Introduction and Data
+
+### (The introduction should introduce your general research question and your data (where it came from, how it was collected, what are the cases, what are the variables, etc.).)
+
+
 The United States currently has the highest prison population in the world at
 around 2,094,000. This situation can be traced back to the 1970s, when
 politicians like Richard Nixon, Ronald Reagan, and more began the War on Drugs
@@ -53,6 +57,9 @@ larceny, and vehicle theft.
 \newpage
 
 ## Methodology
+
+### (The methodology section should include the variables used to address your research question, as well as any useful visualizations or summary statistics. As well, you should introduce and justify the statistical method(s) that you believe will be useful in answering your research question.)
+
 The following variables, from the original data set, were used to address the 
 research questions above:\newline
 • `jurisdiction`: a categorical variable for federal jurisdiction and the 50 
@@ -78,7 +85,11 @@ new revised definition). \newline
 crimes (equals the sum of `burglary`, `larceny`, and `vehicle_theft`). \newline
 • `burglary`: a numerical variable for the number of burglaries. \newline
 • `larceny`: a numerical variable for the number of larcenies. \newline
-• `vehicle_theft`: a numerical variable for the number of vehicle thefts. \newline
+• `vehicle_theft`: a numerical variable for the number of vehicle thefts.
+
+### Statistical Methods
+(We need to introduce and justify the statistical method(s) that we believe will 
+be useful in answering the research question(s).)
 
 
 ### Summary Statistics and Visualizations
@@ -295,6 +306,12 @@ crime_rape <- crime_rape %>%
 
 ## Results
 
+### (Showcase how you arrived at answers to your question using any techniques we have learned in this class (and some beyond, if you’re feeling adventurous). Provide the main results from your analysis. The goal is not to do an exhaustive data analysis (i.e., do not calculate every statistic and procedure you have learned for every variable), but rather let me know that you are proficient at asking meaningful questions and answering them with results of data analysis, that you are proficient in using R, and that you are proficient at interpreting and presenting the results. Focus on methods that help you begin to answer your research questions.)
+
+
+
+(We can definitely use the linear regression methods we learned in the last
+unit here. Let's discuss this when we meet.)
 
 ### Are the increasing incarceration numbers due to increasing crime rates? 
 
@@ -383,9 +400,8 @@ prisoners convicted for rape. Based on the graph, it seems like after the new
 definition was implemented, the number of prisoners who are incarcerated for
 rape increased. We will perform tests to find the p-value and try to
 determine if this is a correlation relationship or a causal relationship.
- 
-https://ucr.fbi.gov/recent-program-updates/new-rape-definition-
-frequently-asked-questions
+
+\newpage
 
 ```{r creating-proportion-variables, eval = FALSE, echo = FALSE}
 crime_props <- crime %>%
@@ -615,3 +631,36 @@ tidy(vehicle_theft_model)
 <!-- between 2001 and 2016. Notice, all of these 7 crimes have a negative slope -->
 <!-- meaning they overall decreased during this time period. The slopes vary in  -->
 <!-- magnitude from about -7000 crimes/year to about -180,000 crimes/year. -->
+
+
+## Discussion
+
+### (This section is a conclusion and discussion. This will require a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project or what you would do next if you were going to continue work on the project should also be included.)
+
+Talk about the lack of observational data. These are already big picture 
+statistics that don't tell individual stories. Might have been interesting
+to see individual statistics of each conviction over a period of time to 
+complement these base rates.
+
+Discuss the inclusion of jails in different states, the change in crime 
+reporting and the estimation of crime in some states. 
+(`includes_jails`, `crime_reporting_change`, `crimes_estimated`)
+
+
+
+
+## References
+
+https://www.prisonstudies.org/highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All
+
+https://www.aclu.org/blog/racial-justice/why-mass-incarceration-really-new-jim-crow
+
+https://www.aclu.org/issues/smart-justice/mass-incarceration
+
+https://www.kaggle.com/census/us-population-by-zip-code
+
+https://www.bjs.gov/index.cfm?ty=tp&tid=131 
+
+https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states?select=crime_and_incarceration_by_state.csv
+
+https://ucr.fbi.gov/recent-program-updates/new-rape-definition-frequently-asked-questions
