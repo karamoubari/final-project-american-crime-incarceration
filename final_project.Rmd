@@ -385,7 +385,6 @@ committed.
 ### How does policy impact incarceration? This will be explored through the lens of hanging definition of rape.
 
 Figure 6: \newline
-
 In 2012 the FBI changed their definition of rape from:
 "The old definition was 'The carnal knowledge of a female forcibly and against
 her will.' Many agencies interpreted this definition as excluding a long list
@@ -400,6 +399,9 @@ prisoners convicted for rape. Based on the graph, it seems like after the new
 definition was implemented, the number of prisoners who are incarcerated for
 rape increased. We will perform tests to find the p-value and try to
 determine if this is a correlation relationship or a causal relationship.
+
+This one change in policy had obvious impacts on the number of people incarcerated for the crime. While it is only a small example, it supports theories on incarceration that emphasize the role of laws and policies on the number of people incarcerated rather than the actual number of crimes committed. This is assuming a causal relationship between the policy change and the number of people incarcerated.
+The creation and enforcement of policy has a greater impact on who is incarcerated and how many people are incarcerated for each crime than the actual rate of crime. Despite public perception assuming the opposite relationship. Many times the policies can be used to adjust a narrative to support a political movement or idea at the time. Crime rates can increase when policy is adjusted to include more crime as seen with the change in defintion for rape. This is not to say that this change contributed significantly to mass incarceration or that the change in definition was unjust. Rather, this example in our data exemplifies the impact of policies on incarceration rather than crime rate.
 
 \newpage
 
@@ -440,6 +442,7 @@ crime_props <- crime_props %>%
  
 ```
  
+ 
 ```{r proportion-of-crimes-including-larcency, echo = FALSE, warning = FALSE, message = FALSE, eval = FALSE}
 ggplot(data = crime_props, mapping = aes(x = year)) +
   geom_line(aes(y = total_rape_legacy_prop), color = "red", 
@@ -469,115 +472,8 @@ ggplot(data = crime_props, mapping = aes(x = year)) +
                 Magenta = Proportion of vehicle theft")
 ```
 
-```{r proportion-of-crimes-including-larcency-2, echo = FALSE, warning=FALSE, message=FALSE, eval = FALSE}
-ggplot(data = crime_props, mapping = aes(x = year)) +
-  geom_line(aes(y = total_rape_legacy_prop), color = "red", linetype="twodash") +
-  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
-  geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
-  geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
-  geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
-  geom_line(aes(y = total_burglary_prop), color = "pink") +
-  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta") +
-  labs(title = "",
-     x = "Year",
-     y = "Proportion of prisoners convicted of each crime
-            (not including federal incarcerated people)",
-     caption = "Red = Proportion of Rape by legacy definiton
-                Blue = Proportion of murder/manslaughter
-                Green = Proportion of Rape by revised definition
-                Yellow = Proportion of robbery
-                Purple = Proportion of aggravated assault
-                Pink = Proportion of burglary
-                Magenta = Proportion of vehicle theft")
-```
- 
-```{r plot-violent-nonviolent-crimes, echo = FALSE, eval = FALSE}
-ggplot(data = crime_props, mapping = aes(x = year)) +
-  geom_line(aes(y = total_violent_crime_total), color = "red") +
-  geom_line(aes(y = total_property_crime_total), color = "blue") +
-  labs(title = "",
-     x = "Year",
-     y = "Proportion of prisoners convicted of each type of crime
-            (not including federal incarcerated people)")
-```
-<!-- We wanted to see how the proportions of crimes were divided among the -->
-<!-- prior population. Also we wanted to see whether violent or non-violent crimes -->
-<!-- were represented more among the prison population. It appears that non violent -->
-<!-- crimes make up a larger proportion of the prison population than violent crimes. -->
-<!-- Generally, violent and non-violent crimes are decreasing in regards to  -->
-<!-- proportion of the prison population. Nonviolent crimes seem to be decreasing at  -->
-<!-- a faster rate than violent crimes. Larceny makes up the largest proportion of  -->
-<!-- crimes in the prison population. So we took it out for the second visualization -->
-<!-- to get a better look at the other crimes. Murder and manslaughter make up the -->
-<!-- smallest proportion. -->
-
-
 <!-- How do trends in different crimes compare to each other? Do they move 
 together or do they change individually? -->
-
-```{r new-dataset, echo = FALSE, warning=FALSE, message=FALSE, eval = FALSE}
-totals_by_year <- state_crime %>%
-  group_by(year) %>%
-  summarise(violent_crime_total = sum(violent_crime_total),
-            robbery = sum(robbery),
-            agg_assault = sum(agg_assault),
-            property_crime_total = sum(property_crime_total),
-            burglary = sum(burglary),
-            larceny = sum(larceny),
-            vehicle_theft = sum(vehicle_theft))
-
-# for some reason 2015 didn't get added to my dataset
-```
-
-
-```{r line-graph, eval = FALSE, echo = FALSE}
-ggplot(data = totals_by_year,
-       aes(x = year)) +
-  geom_line(aes(y = violent_crime_total), color = "red") +
-  geom_line(aes(y = robbery), color = "blue") +
-  geom_line(aes(y = agg_assault), color = "green") +
-  geom_line(aes(y = property_crime_total), color = "yellow") +
-  geom_line(aes(y = burglary), color = "pink") +
-  geom_line(aes(y = larceny), color = "black") +
-  geom_line(aes(y = vehicle_theft), color = "purple")
-
-#not a very effective visualization
-  
-```
-
-
-```{r reg-analysis-graphs, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
-
-ggplot(data = totals_by_year, aes(x = year, y = violent_crime_total)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = robbery)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = agg_assault)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = property_crime_total)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = burglary)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = larceny)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = vehicle_theft)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-```
-
 
 
 ```{r fitted-model, eval = FALSE, echo = FALSE}
