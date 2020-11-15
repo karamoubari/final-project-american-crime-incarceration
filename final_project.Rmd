@@ -205,23 +205,34 @@ crime_rape<- crime_rape %>%
                 Blue = Total Number of Prisoners convicted of rape
                         by the Revised Definition in state custody")
 ```
-In 2012 the FBI changed their definition of rape from:
-"The old definition was 'The carnal knowledge of a female forcibly and against
-her will.' Many agencies interpreted this definition as excluding a long list
-of sex offenses that are criminal in most jurisdictions, such as offenses
-involving oral or anal penetration, penetration with objects, and rapes of
-males.
+In 2012 the FBI changed their definition of rape from "The carnal knowledge of
+a female forcibly and against her will,” to, “'Penetration, no matter how 
+slight, of the vagina or anus with any body part or object, or oral penetration
+by a sex organ of another person, without the consent of the victim.”
  
-to:
-The new Summary definition of Rape is: 'Penetration, no matter how slight, of
-the vagina or anus with any body part or object, or oral penetration by a sex
-organ of another person, without the consent of the victim.'"
- 
-We wanted to see how the change in definition affected the number of
-prisoners convicted for rape. Based on the graph, it seems like after the new
-definition was implemented, the number of prisoners who are incarcerated for
-rape increased. We will perform tests to find the p-value and try to
-determine if this is a correlation relationship or a causal relationship.
+We wanted to see how the change in definition affected the number of prisoners 
+convicted for rape. Based on the graph, it seems like after the new definition 
+was implemented, the number of prisoners who are incarcerated for rape 
+increased. We will perform tests to find the p-value and try to determine if 
+this is correlation or a causal relationship.
+
+This one change in policy had obvious impacts on the number of people 
+incarcerated for the crime. While it is only a small example, it supports 
+theories on incarceration that emphasize the role of laws and policies on the 
+number of people incarcerated rather than the actual number of crimes committed.
+This is assuming a causal relationship between the policy change and the number 
+of people incarcerated.
+The creation and enforcement of policy has a greater impact on who is 
+incarcerated and how many people are incarcerated for each crime than the 
+actual rate of crime. Despite public perception assuming the opposite 
+relationship. Many times the policies can be used to adjust a narrative to 
+support a political movement or idea at the time. Crime rates can increase when 
+policy is adjusted to include more crime as seen with the change in defintion 
+for rape. This is not to say that this change contributed significantly to mass
+incarceration or that the change in definition was unjust. Rather, this example
+in our data exemplifies the impact of policies on incarceration rather than 
+crime rate.
+
  
 https://ucr.fbi.gov/recent-program-updates/new-rape-definition-
 frequently-asked-questions
