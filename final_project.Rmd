@@ -1,462 +1,203 @@
 ---
-title: "Final Project:"
-subtitle: "American Crime and Incarceration"
-author: "PS I Love Yue: Oliver, Karam, Steven, Emely"
+title: "American Crime and Incarceration"
+subtitle: "STA 199 Final Project"
+author: "Oliver Greenwald, Karam Oubari, Steven Powell, Emely Gutierrez"
 output: pdf_document
 ---
 
-### Introduction
-The United States currently has the highest prison population in the world at around 2,094,000. This situation can be traced back to the 1970s, when politicians like Richard Nixon, Ronald Reagan, and more began the War on Drugs and began promoting “tough on crime” agendas. All this is despite scholars of the time believing prisons might have been abolished entirely, as crime and imprisonment rates were at an all time low. Mass incarceration has resulted in many racial disparities—  disproportionately affecting Black men in particular. These racial disparities are functionally seen by many as modern-day Jim Crow laws which were outlawed in the 1960s.
-Rates of imprisonment have continued to increase under the guise of “public safety.” However, the reality is that the US’s crime rates are comparable to countries with similar economies, yet the rate of incarceration is significantly higher. The US has only 5% of the world’s population, and yet it houses 25% of the world’s incarcerated persons. The racial, social, and economic implications of this statistic are what we intend to explore in this project. 
-With this context and data set, we are hoping to answer a variety of questions. Namely, what trends can we find in the data? Can we point to specific policy that might have caused the imprisonment rates to be as high or as low as they are in a specific year? Is there evidence to suggest that higher rates of imprisonment do create safety, whether by deterring crime or by severely punishing it? Does a state’s (typical) party affiliation affect their rate of incarceration, or is this an issue that goes beyond party lines? Are states with a high percentage of people of color more prone to higher rates of incarceration? 
-Though it is difficult to point to a single question that we may be able to answer using this dataset, we are confident that through thorough analysis of the Crime and Incarceration Data Set, we will be able to critically analyze the rhetoric that is often used to defend the US’ prison system and investigate common misconceptions regarding the root causes of crime and incarceration. 
-We will likely have to do research outside of this data set to create a strong narrative depending on which direction our project takes us. We have found an additional dataset which includes census data that could be used to find correlations between state and prison demographics. The exact trend or correlation that we will be investigating is not perfectly clear yet, research and analysis of this dataset will reveal interesting information about the US prison system.
+## Synoposis
+This research project is aimed to further understand and analyze American prison
+incarceration and crime in the 50 states between 2001 and 2016. Analysis was 
+done by focusing specifically on state prisoners (as opposed to federal) and the
+types of crimes that prisoners had been convicted of. The data set used 
+observes 7 types of crimes that can be classified into violent crimes and 
+property crimes.
 
-### Research Questions
-1) How do trends in different crimes compare to each other? (Do they move together or do they change indivisually?)
-2) How does crime differ for different regions of the US? (Make a color coded US map)
-3) Is there a relationship between proportion of population incarcerated and party affiliation in American states?
-4) How does policy impact incarceration? (an example of this is the changing definition of rape)
+
+## Introduction and Data
+
+### (The introduction should introduce your general research question and your data (where it came from, how it was collected, what are the cases, what are the variables, etc.).)
+
+
+The United States currently has the highest prison population in the world at
+around 2,094,000. This situation can be traced back to the 1970s, when
+politicians like Richard Nixon, Ronald Reagan, and more began the War on Drugs
+and their “tough on crime” agendas. Since then, rates of imprisonment have
+continued to increase under the guise of “public safety.” However, the reality
+is that the US’ crime rates are comparable to countries with similar economies,
+yet the rate of incarceration is significantly higher. The US  has only 5% of
+the world’s population, and yet it houses 25% of the world’s incarcerated
+persons.
+
+In this project we aim to understand the extent of the issue of mass 
+incarceration, what sub-statistics can most explain the issue, and how the 
+numbers connect to public policy.
 
 ### Data Description
-“The Bureau of Justice Statistics administers the National Prisoners Statistics Program (NPS), an annual data collection effort that began in response to a 1926 congressional mandate. The Uniform Crime Report (UCR) has served as the FBI's primary national data collection tool since a 1930 congressional mandate directed the Attorney General to ‘acquire, collect, classify, and preserve identification, criminal identification, crime, and other records.’ The FBI collects this information voluntarily submitted by local, state, and federal law enforcement agencies.” The user who updated this dataset used the raw data from the NPS and wrangled it in python to create the variables and observations. 
-Within the dataset there are 816 rows and 17 variables. The variables included in the set are US state, whether or not the data for that entry includes jails, the year, prisoner count on December 31st, whether or not the state in the data entry changed their system for reporting crime in comparison to previous years, whether or not crime totals are estimated, and numbers of: total state population, violent crimes, murders or manslaughters, rapes (using the old definition), rapes (using the new definition), robberies, aggravated assaults, property crime, burglaries, larceny, and vehicle theft. 
+“The Bureau of Justice Statistics administers the National Prisoners Statistics 
+Program (NPS), an annual data collection effort that began in response to a 1926 
+congressional mandate. The Uniform Crime Report (UCR) has served as the FBI's 
+primary national data collection tool since a 1930 congressional mandate 
+directed the Attorney General to ‘acquire, collect, classify, and preserve 
+identification, criminal identification, crime, and other records.’ The FBI
+collects this information voluntarily submitted by local, state, and federal
+law enforcement agencies.”
+
+The user who updated this data set used the raw data from the NPS and wrangled 
+it in Python to create the variables and observations. Within the data set there 
+are 816 rows and 17 variables. The variables included in the set are US state, 
+whether or not the data for that entry includes jails, the year, prisoner count 
+on December 31st, whether or not the state in the data entry changed their 
+system for reporting crime in comparison to previous years, whether or not crime 
+totals are estimated, and numbers of: total state population, violent crimes, 
+murders or manslaughter, rapes (using the old definition), rapes (using the new 
+definition), robberies, aggravated assaults, property crime, burglaries, 
+larceny, and vehicle theft.
 
 \newpage
+
+## Methodology
+
+### (The methodology section should include the variables used to address your research question, as well as any useful visualizations or summary statistics. As well, you should introduce and justify the statistical method(s) that you believe will be useful in answering your research question.)
+
+The following variables, from the original data set, were used to address the 
+research questions above:\newline
+• `jurisdiction`: a categorical variable for federal jurisdiction and the 50 
+states. \newline
+• `year`: a numerical variable for the year of each observation, 2001 through 
+2016. \newline 
+• `prisoner_count`:a numerical variable for the number of prisoners in each
+state for the given year. \newline
+• `state_population`: a numerical variable for the population of each state
+in a given year. \newline
+• `violent_crime_total`: a numerical variable for the total number of violent 
+crimes (equals the sum of `murder_manslaughter`, `rape_legacy`, `rape_revised`,
+`robbery`, and `agg_assault`). \newline
+• `murder_manslaughter`: a numerical variable for the numbers of murders and
+manslaughters. \newline
+• `rape_legacy`: a numerical variable for the number of rapes (using the old
+definition). \newline
+• `rape_revised`: a numerical variable for the number of rapes (using the 
+new revised definition). \newline
+• `robbery`: a numerical variable for the number of robberies. \newline
+• `agg_assault`: a numerical variable for the number of aggravated assaults. \newline
+• `property_crime_total`: a numerical variable for the total number of property
+crimes (equals the sum of `burglary`, `larceny`, and `vehicle_theft`). \newline
+• `burglary`: a numerical variable for the number of burglaries. \newline
+• `larceny`: a numerical variable for the number of larcenies. \newline
+• `vehicle_theft`: a numerical variable for the number of vehicle thefts.
+
+### Statistical Methods
+(We need to introduce and justify the statistical method(s) that we believe will 
+be useful in answering the research question(s).)
+
+
+### Summary Statistics and Visualizations
+First, in this project we aim to understand the extent of the issue of mass
+incarceration through summary statistics and visualizations. In Figure 1, we 
+visualize the total number of prisoners in the US from 2001 to 2016. As we can 
+see the graph shows a steady incline from 2001 to 2008 and then a steady decline 
+followed by a sharp decline thereafter. In Figure 2, we visualize the amount of 
+crime in the US and notice that it decreases quite steadily between 2001 and 
+2016. In Figure 3, we examine the change in the proportion of the population
+that is imprisoned between 2001 and 2016. This shows us a steady increase 
+between 2001 and 2007 before a steady decrease afterwards. In Figure 4, we 
+mapped out the proportion of each state's population that was imprisoned in 2016
+to get a clearer idea of which states contribute most the issue of mass 
+incarceration. Most noticeably, Delaware, Oklahoma, and Arizona have have much 
+higher imprisonment proportions than the rest of the country.
 
 ```{r packages-data, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(broom)
 library(sf)
-crime <- read_csv("data/crime_and_incarceration_by_state.csv") 
 ```
 
-
-```{r state_crime, echo = FALSE}
+```{r state_crime, echo = FALSE, warning=FALSE, message=FALSE}
+crime <- read_csv("data/crime_and_incarceration_by_state.csv") 
 
 federal_crime <- crime %>%
   filter(jurisdiction == "FEDERAL")
 
 state_crime <- crime %>%
   filter(jurisdiction != "FEDERAL")
-
-state_crime <- state_crime %>%
-  group_by(year)%>%
-  mutate(percent_pop = sum(prisoner_count)/sum(state_population))
-  
 ```
-
-```{r us-map-shapefile}
-# install.packages("devtools")
-# devtools::install_github("UrbanInstitute/urbnmapr")
-```
-
-
-```{r prisoner-prop-map}
-
-# library(tidyverse)
-# library(urbnmapr)
-# 
-# states_sf <- get_urbn_map("states", sf = TRUE)
-# 
-# states_sf %>% 
-#   ggplot(aes()) +
-#   geom_sf(fill = "grey", color = "#ffffff")
-
-```
-
-
-
-
-
-Political rhetoric that has come to the forefront in recent decades is the idea 
-of law and order, being tough on crime, and ensuring punishment to the fullest 
-extent of the law. We went into this project knowing that the number of 
-incarcerated individuals in the US is the highest of any other developed country 
-with a similar economy and governmental system. Knowing this, we would assume 
-that if the US has a strong belief that we need to be tough on crime, the high 
-rates of incarceration are due to high crime rates, violent or otherwise. With 
-this in mind, we wanted to find if the data would support this hypothesis.
 
 ```{r total-prisoners, echo = FALSE}
 crime <- crime %>%
-  group_by(year)%>%
-  mutate(total_prisoner= sum(prisoner_count))
+  group_by(year) %>%
+  mutate(total_prisoner_per_year = sum(prisoner_count))
  
  crime %>%
-  ggplot(crime, mapping= aes(x=year, y=total_prisoner))+
-  geom_line()+
-  labs(title = "Total US Prisoners",
-  x = "Year", y = "Count") +
-  theme_linedraw()
-```
-Above is the total prisoners in all 50 US states from 2001 to 2016. The graph 
-shows a steady incline from 2001 to 2008 and then a steady decline followed by a 
-sharp decline thereafter. Drawing attention to the range of the y-axis, we can 
-see thar despite these sharp declines, the number of incarcerated individuals at 
-the lowest point was still above 1.19 million, which is still infinitely higher 
-than the rate of incarceration in other countries.
-
-```{r total-violent-crime, echo = FALSE}
-crime<- crime %>%
-  filter(!is.na(violent_crime_total))%>%
-  group_by(year)%>%
-  mutate(total_violent_crime= sum(violent_crime_total))
- 
- crime %>%
-  ggplot(crime, mapping= aes(x=year, y=total_violent_crime))+
-  geom_line()+
-  labs(title = "Total Violent Crime in the US",
-  x = "Year", y = "Count") +
-  theme_linedraw()
-```
-
-```{r total-property-crime, echo = FALSE}
-crime<- crime %>%
-  filter(!is.na(property_crime_total))%>%
-  group_by(year)%>%
-  mutate(total_property_crime= sum(property_crime_total))
- 
- crime %>%
-  ggplot(crime, mapping= aes(x=year, y=total_property_crime))+
-  geom_line()+
-  labs(title = "Total Property Crime in the US", 
-       subtitle = "Sum of Property Crime and Violent Crime", 
+  ggplot(crime, mapping = aes(x = year, 
+                             y = total_prisoner_per_year)) +
+  geom_line() +
+  labs(title = "Figure 1: Total US Prisoners", 
+       subtitle = "between 2001 and 2016",
        x = "Year", 
-       y = "Count") +
-  theme_linedraw()
+       y = "Count")
 ```
-
 
 ```{r total-crime, echo = FALSE}
-crime<- crime %>%
-  group_by(year)%>%
-  mutate(total_crime= total_property_crime + total_violent_crime)
+crime <- crime %>%
+  filter(!is.na(violent_crime_total)) %>%
+  group_by(year) %>%
+  mutate(total_violent_crime = sum(violent_crime_total))
+
+crime <- crime %>%
+  filter(!is.na(property_crime_total)) %>%
+  group_by(year) %>%
+  mutate(total_property_crime= sum(property_crime_total))
+
+crime <- crime %>%
+  group_by(year) %>%
+  mutate(total_crime = total_property_crime + total_violent_crime)
  
  crime %>%
-  ggplot(crime, mapping= aes(x=year, y=total_crime))+
-  geom_line()+
-  labs(title = "Total Crime in the US",
-  x = "Year", y = "Count") +
-  theme_linedraw()
+  ggplot(crime, mapping= aes(x=year, y=total_crime)) +
+  geom_line() +
+  scale_y_continuous(name="Count", labels = scales::comma) +
+  labs(title = "Figure 2: Total Crime in the US",
+       subtitle = "from 2001 to 2016",
+  x = "Year", y = "Count")
 ```
-
-The three graphs above show the change in total violent crime 
-(defined as murder/manslaughter, robbery, rape, and aggravated assault), 
-total property crime (defined as burglary, larceny, and vehicle theft) and the 
-total crime (sum of property and violent crime) committed between 2001 and 2016. 
-What is immediately evident is that even when crime of all types was sharply 
-decreasing, the number of incarcerated individuals was still steadily 
-decreasing. Based on this alone, though we cannot definitively draw this 
-conclusion, it would appear that rates of incarceration are actually not due to 
-how much or how little crime is being committed and is instead due to other 
-factors which we will explore later in our analyses. Possible explanations might 
-be policy changes, new sentencing guidelines, amount of policing, and a plethora 
-of other reasons.
-
 
 ```{r percent-pop, echo = FALSE}
-crime<- crime %>%
+crime <- crime %>%
   group_by(year)%>%
-  mutate(percent_pop= sum(prisoner_count)/sum(state_population))
+  mutate(percent_pop = 100 * sum(prisoner_count)/sum(state_population))
  
  crime %>%
-  ggplot(crime, mapping= aes(x=year, y=percent_pop))+
-  geom_line()+
-  labs(title = "Percent Population Incarcerated",
-  x = "Year", y = "Count") +
-  theme_linedraw()
-```
-After drawing the previous conclusion, we thought there may be another 
-explanation, even if crime was going down it could be that US population was 
-increasing, when we graphed it above, it would appear that the percent of the 
-US population which is imprisoned shows very strong similarities to the Total 
-US Prison Population graph. However, that being said, even if the population is 
-increasing, if the crime rate is staying the same, or decreasing as we observed
-previously, there is still no valid reason to incarcerate more people.
-
-### Steven
-
-### Impact of Changing the Definition of Rape
-```{r creation-of-rape-data-set, echo = FALSE}
-crime_rape <- crime
-crime_rape[is.na(crime_rape)] <- 0
-```
- 
-```{r ggplot-of-rape-convictions, echo = FALSE}
-crime_rape<- crime_rape %>%
-  group_by(year)%>%
-  mutate(total_rape_legacy= sum(rape_legacy))
- 
-crime_rape<- crime_rape %>%
-  group_by(year)%>%
-  mutate(total_rape_revised= sum(rape_revised))
- 
-  ggplot(data = crime_rape,
-       mapping = aes(x = year)) +
-  geom_line(aes(y = total_rape_legacy), color = "red") +
-    geom_line(aes(y = total_rape_revised), color = "blue") +
-    geom_vline(xintercept = 2012) +
-    labs(title = "",
-     x = "Year",
-     y = "Number of Rape Cases",
-     caption = "Red = Total Number of Prisoners convicted of rape
-                      by the Legacy Definition in state custody
-                Blue = Total Number of Prisoners convicted of rape
-                        by the Revised Definition in state custody")
-```
-In 2012 the FBI changed their definition of rape from "The carnal knowledge of
-a female forcibly and against her will,” to, “'Penetration, no matter how 
-slight, of the vagina or anus with any body part or object, or oral penetration
-by a sex organ of another person, without the consent of the victim.”
- 
-We wanted to see how the change in definition affected the number of prisoners 
-convicted for rape. Based on the graph, it seems like after the new definition 
-was implemented, the number of prisoners who are incarcerated for rape 
-increased. We will perform tests to find the p-value and try to determine if 
-this is correlation or a causal relationship.
-
-This one change in policy had obvious impacts on the number of people 
-incarcerated for the crime. While it is only a small example, it supports 
-theories on incarceration that emphasize the role of laws and policies on the 
-number of people incarcerated rather than the actual number of crimes committed.
-This is assuming a causal relationship between the policy change and the number 
-of people incarcerated.
-The creation and enforcement of policy has a greater impact on who is 
-incarcerated and how many people are incarcerated for each crime than the 
-actual rate of crime. Despite public perception assuming the opposite 
-relationship. Many times the policies can be used to adjust a narrative to 
-support a political movement or idea at the time. Crime rates can increase when 
-policy is adjusted to include more crime as seen with the change in defintion 
-for rape. This is not to say that this change contributed significantly to mass
-incarceration or that the change in definition was unjust. Rather, this example
-in our data exemplifies the impact of policies on incarceration rather than 
-crime rate.
-
- 
-https://ucr.fbi.gov/recent-program-updates/new-rape-definition-
-frequently-asked-questions
- 
-### Proportions of Crime in the United States
- 
-```{r creating-proportion-variables, echo = FALSE}
-crime_props <- crime %>%
-  filter(jurisdiction != "FEDERAL") %>%
-  mutate(violent_crime_total_prop = (violent_crime_total / prisoner_count)) %>%
-  mutate(rape_legacy_prop = (rape_legacy / prisoner_count)) %>%
-  mutate(murder_manslaughter_prop = (murder_manslaughter / prisoner_count)) %>%
-  mutate(rape_revised_prop = (rape_revised / prisoner_count)) %>%
-  mutate(robbery_prop = (robbery / prisoner_count)) %>%
-  mutate(agg_asssault_prop = (agg_assault / prisoner_count)) %>%
-  mutate(property_crime_total_prop = (property_crime_total / prisoner_count)) %>%
-  mutate(burglary_prop = (burglary / prisoner_count)) %>%
-  mutate(larceny_prop = (larceny / prisoner_count)) %>%
-  mutate(vehicle_theft_prop = (vehicle_theft / prisoner_count))
- 
-crime_props <- crime_props %>%
-  group_by(year) %>%
-  mutate(total_rape_legacy_prop = (sum(rape_legacy_prop)/sum(prisoner_count))) %>%
-  mutate(total_murder_manslaughter_prop = (sum(murder_manslaughter_prop)/sum(prisoner_count))) %>%
-  mutate(total_rape_revised_prop = (sum(rape_revised_prop)/sum(prisoner_count))) %>%
-  mutate(total_robbery_prop = (sum(robbery_prop)/sum(prisoner_count))) %>%
-  mutate(total_agg_assault_prop = (sum(agg_asssault_prop)/sum(prisoner_count))) %>%
-  mutate(total_burglary_prop = (sum(burglary_prop)/sum(prisoner_count))) %>%
-  mutate(total_larceny_prop = (sum(larceny_prop)/sum(prisoner_count))) %>%
-  mutate(total_vehicle_theft_prop = (sum(vehicle_theft_prop)/sum(prisoner_count))) %>%
-  mutate(total_violent_crime_total = (sum(violent_crime_total_prop)/sum(prisoner_count))) %>%
-  mutate(total_property_crime_total = (sum(property_crime_total_prop)/sum(prisoner_count)))
- 
-```
- 
-```{r proportion-of-crimes-including-larcency, echo = FALSE}
-ggplot(data = crime_props, mapping = aes(x = year)) +
-  geom_line(aes(y = total_rape_legacy_prop), color = "red",linetype="twodash") +
-  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
-  geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
- geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
-  geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
-  geom_line(aes(y = total_burglary_prop), color = "pink") +
-  geom_line(aes(y = total_larceny_prop), color = "orange") +
-  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta")
-  labs(title = "",
-     x = "Year",
-     y = "Proportion of prisoners convicted of each crime
-            (not including federal incarcerated people)",
-     caption = "Red = Proportion of Rape by legacy definiton
-                Blue = Proportion of murder/manslaughter
-                Green = Proportion of Rape by revised definition
-                Yellow = Proportion of robbery
-                Purple = Proportion of aggravated assault
-                Pink = Proportion of burglary
-                Orange = Proportion of larceny
-                Magenta = Proportion of vehicle theft")
-```
-```{r proportion-of-crimes-including-larcency-2, echo = FALSE, warning=FALSE, message=FALSE}
-ggplot(data = crime_props, mapping = aes(x = year)) +
-  geom_line(aes(y = total_rape_legacy_prop), color = "red", linetype="twodash") +
-  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
-  geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
-  geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
-  geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
-  geom_line(aes(y = total_burglary_prop), color = "pink") +
-  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta") +
-  labs(title = "",
-     x = "Year",
-     y = "Proportion of prisoners convicted of each crime
-            (not including federal incarcerated people)",
-     caption = "Red = Proportion of Rape by legacy definiton
-                Blue = Proportion of murder/manslaughter
-                Green = Proportion of Rape by revised definition
-                Yellow = Proportion of robbery
-                Purple = Proportion of aggravated assault
-                Pink = Proportion of burglary
-                Magenta = Proportion of vehicle theft")
-```
- 
-```{r plot-violent-nonviolent-crimes, echo = FALSE}
-ggplot(data = crime_props, mapping = aes(x = year)) +
-  geom_line(aes(y = total_violent_crime_total), color = "red") +
-  geom_line(aes(y = total_property_crime_total), color = "blue") +
-  labs(title = "",
-     x = "Year",
-     y = "Proportion of prisoners convicted of each type of crime
-            (not including federal incarcerated people)")
-```
-We wanted to see how the proportions of crimes were divided among the
-prion population. Also we wanted to see whether violent or non-violent crimes
-were represented more among the prison population. It appears that non violent
-crimes make up a larger proportion of the prison population than violent crimes.
-Generally, violent and non-violent crimes are decreasing the proportion of the
-prison population. Nonviolent crimes seem to be decreasing at a faster rate
-than violent crimes. Larceny makes up the largest proportion of crimes
-in the prison population. So we took it out for the second visualization
-to get a better look at the other crimes. Murder and manslaughter make up the
-smallest proportion.
-
-### Crime by year
-
-
-```{r new-dataset, echo = FALSE, warning=FALSE, message=FALSE}
-totals_by_year <- state_crime %>%
-  group_by(year) %>%
-  summarise(violent_crime_total = sum(violent_crime_total),
-            robbery = sum(robbery),
-            agg_assault = sum(agg_assault),
-            property_crime_total = sum(property_crime_total),
-            burglary = sum(burglary),
-            larceny = sum(larceny),
-            vehicle_theft = sum(vehicle_theft))
-
-# for some reason 2015 didn't get added to my dataset
-```
-
-
-```{r line-graph, echo = FALSE}
-
-
-ggplot(data = totals_by_year,
-       aes(x = year)) +
-  geom_line(aes(y = violent_crime_total), color = "red") +
-  geom_line(aes(y = robbery), color = "blue") +
-  geom_line(aes(y = agg_assault), color = "green") +
-  geom_line(aes(y = property_crime_total), color = "yellow") +
-  geom_line(aes(y = burglary), color = "pink") +
-  geom_line(aes(y = larceny), color = "black") +
-  geom_line(aes(y = vehicle_theft), color = "purple")
-
-#not a very effective visualization
-  
-```
-
-
-```{r graphs, warning = FALSE, message = FALSE, echo = FALSE}
-
-ggplot(data = totals_by_year, aes(x = year, y = violent_crime_total)) +
+  ggplot(crime, mapping = aes(x = year, 
+                              y = percent_pop))+
   geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = robbery)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = agg_assault)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = property_crime_total)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = burglary)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = larceny)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
-ggplot(data = totals_by_year, aes(x = year, y = vehicle_theft)) +
-  geom_line() +
-  geom_smooth(method = lm)
-
+  labs(title = " Figure 3: Percent Population Incarcerated",
+       subtitle = "between 2001 and 2016",
+       x = "Year", 
+       y = "Percent")
 ```
 
+```{r prisoner-prop-map, echo = FALSE}
+prop_pris_2016 <- state_crime %>%
+  filter(year == 2016) %>%
+  mutate(prisoner_per_pop = prisoner_count/state_population) %>%
+  mutate(region = tolower(jurisdiction)) %>%
+  select(region, prisoner_per_pop)
 
+states_map <- map_data("state")
+prop_map_2016 <- left_join(states_map, 
+                           prop_pris_2016, 
+                           by = "region" )
 
-```{r fitted-model, echo = FALSE}
-
-violent_crime_total_model <- lm(violent_crime_total ~ year, 
-                                data = totals_by_year)
-tidy(violent_crime_total_model)
-
-
-robbery_model <- lm(robbery ~ year, data = totals_by_year)
-tidy(robbery_model)
-
-
-agg_assault_model <- lm(agg_assault ~ year, data = totals_by_year)
-tidy(agg_assault_model)
-
-
-property_crime_total_model <- lm(property_crime_total ~ year, 
-                                 data = totals_by_year)
-tidy(property_crime_total_model)
-
-
-burglary_model <- lm(burglary ~ year, data = totals_by_year)
-tidy(burglary_model)
-
-
-larceny_model <- lm(larceny ~ year, data = totals_by_year)
-tidy(larceny_model)
-
-
-vehicle_theft_model <- lm(vehicle_theft ~ year, data = totals_by_year)
-tidy(vehicle_theft_model)
-
+ggplot(prop_map_2016, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill = prisoner_per_pop)) +
+  scale_fill_viridis_c(option = "B", direction=-1) + 
+  labs(title = "Figure 4: 2016 Prisoner Proportions",
+       subtitle = "by state",
+       fill = "Number of prisoners per person")
 ```
 
-
-Here we attempted to answer whether different types of crime change together
-over the years or if different crimes fluctuate in different years. We used 
-data from the variables `violent_crime_total`, `robbery`, `agg_assault`,
-`property_crime_total`, `burglary`, `larceny`, and `vehicle_theft`.
-
-After attempting to compare the shapes of the crime vs. year graphs all together,
-we found that the incredibly different scales make this task impossible to do
-on a single graph. We then graphed these different crimes on different graphs
-with linear models, making it easier to compare shape but still difficult to 
-make objective claims about this data. One notable feature we noticed was that
-there was a peak for many crimes between 2004 and 2008. We plan to research 
-further to find possible causations for these trends.
-
-Last, we created linear models for each crime to see how they each changed
-between 2001 and 2016. Notice, all of these 7 crimes have a negative slope
-meaning they overall decreased during this time period. The slopes vary in 
-magnitude from about -7000 crimes/year to about -180,000 crimes/year.
-
-
-```{r crime-by-region}
+```{r crime-by-region, echo=FALSE, warning = FALSE, message = FALSE}
 
 crime <- crime %>%
   mutate(region = case_when(
@@ -511,8 +252,6 @@ crime <- crime %>%
   jurisdiction == "OREGON" ~ "West",
   jurisdiction == "WASHINGTON" ~ "West"))
 
-view(crime)
-
 year_crime<- crime %>%
   group_by(year, region) %>%
   summarise(total_burglary = sum(burglary, na.rm = T),
@@ -522,8 +261,6 @@ year_crime<- crime %>%
 
 year_crime <- year_crime %>%
   filter(!is.na(region))
-
-view(year_crime)
 
 
 ggplot(year_crime, aes(x=year)) +
@@ -536,8 +273,432 @@ ggplot(year_crime, aes(x=year)) +
                       values = c("red3", "steelblue", "springgreen4", "orangered2")) +
   facet_wrap(~region) +
   scale_y_continuous(name="Number of Crimes", labels = scales::comma) +
-  labs(title = "Yearly Crime by Region in the United States")
+  labs(title = " Figure 5: Yearly Crime by Region in the United States")
+```
+```{r ggplot-of-rape-convictions, echo = FALSE}
+crime_rape <- crime
+crime_rape[is.na(crime_rape)] <- 0
+
+crime_rape <- crime_rape %>%
+  group_by(year)%>%
+  mutate(total_rape_legacy= sum(rape_legacy))
+ 
+crime_rape <- crime_rape %>%
+  group_by(year)%>%
+  mutate(total_rape_revised= sum(rape_revised))
+ 
+  ggplot(data = crime_rape,
+       mapping = aes(x = year)) +
+    
+  geom_line(aes(y = total_rape_legacy), color = "red") +
+    geom_line(aes(y = total_rape_revised), color = "blue") +
+    geom_vline(xintercept = 2012) +
+    labs(title="Figure 6: Revising definition of rape in 2012 led to more rape convictions",
+     x = "Year",
+     y = "Number of Rape Convictions",
+     caption = "Red = Total Number of Prisoners convicted of rape
+                      by the Legacy Definition in state custody
+                      
+                Blue = Total Number of Prisoners convicted of rape
+                        by the Revised Definition in state custody")
+```
+<<<<<<< HEAD
+In 2012 the FBI changed their definition of rape from "The carnal knowledge of
+a female forcibly and against her will,” to, “'Penetration, no matter how 
+slight, of the vagina or anus with any body part or object, or oral penetration
+by a sex organ of another person, without the consent of the victim.”
+ 
+We wanted to see how the change in definition affected the number of prisoners 
+convicted for rape. Based on the graph, it seems like after the new definition 
+was implemented, the number of prisoners who are incarcerated for rape 
+increased. We will perform tests to find the p-value and try to determine if 
+this is correlation or a causal relationship.
+
+This one change in policy had obvious impacts on the number of people 
+incarcerated for the crime. While it is only a small example, it supports 
+theories on incarceration that emphasize the role of laws and policies on the 
+number of people incarcerated rather than the actual number of crimes committed.
+This is assuming a causal relationship between the policy change and the number 
+of people incarcerated.
+The creation and enforcement of policy has a greater impact on who is 
+incarcerated and how many people are incarcerated for each crime than the 
+actual rate of crime. Despite public perception assuming the opposite 
+relationship. Many times the policies can be used to adjust a narrative to 
+support a political movement or idea at the time. Crime rates can increase when 
+policy is adjusted to include more crime as seen with the change in defintion 
+for rape. This is not to say that this change contributed significantly to mass
+incarceration or that the change in definition was unjust. Rather, this example
+in our data exemplifies the impact of policies on incarceration rather than 
+crime rate.
+
+ 
+https://ucr.fbi.gov/recent-program-updates/new-rape-definition-
+frequently-asked-questions
+ 
+### Proportions of Crime in the United States
+ 
+```{r creating-proportion-variables, echo = FALSE}
+=======
+\newpage
+
+## Results
+
+### (Showcase how you arrived at answers to your question using any techniques we have learned in this class (and some beyond, if you’re feeling adventurous). Provide the main results from your analysis. The goal is not to do an exhaustive data analysis (i.e., do not calculate every statistic and procedure you have learned for every variable), but rather let me know that you are proficient at asking meaningful questions and answering them with results of data analysis, that you are proficient in using R, and that you are proficient at interpreting and presenting the results. Focus on methods that help you begin to answer your research questions.)
+
+
+
+(We can definitely use the linear regression methods we learned in the last
+unit here. Let's discuss this when we meet.)
+
+### Are the increasing incarceration numbers due to increasing crime rates? 
+
+Political rhetoric that has come to the forefront in recent decades is the idea 
+of law and order, being tough on crime, and ensuring punishment to the fullest 
+extent of the law. We went into this project knowing that the number of 
+incarcerated individuals in the US is the highest of any other developed country 
+with a similar economy and governmental system. Knowing this, we would assume 
+that if the US has a strong belief that we need to be tough on crime, the high 
+rates of incarceration are due to high crime rates, violent or otherwise. With 
+this in mind, we wanted to find if the data would support this hypothesis.
+
+Figure 1 and 2: \newline
+What is immediately evident is that even when crime of all types was sharply 
+increasing, the number of incarcerated individuals was still steadily 
+decreasing. Based on this alone, though we cannot definitively draw this 
+conclusion, it would appear that rates of incarceration are actually not due to 
+how much or how little crime is being committed and is instead due to other 
+factors which we will explore later in our analyses. Possible explanations might 
+be policy changes, new sentencing guidelines, amount of policing, and a plethora 
+of other reasons.
+
+Figure 3 and 4: \newline
+After drawing the previous conclusion, we thought there may be another 
+explanation, even if crime was going down it could be that US population was 
+increasing, when we graphed it above, it would appear that the percent of the 
+US population which is imprisoned shows very strong similarities to the Total 
+US Prison Population graph. However, that being said, even if the population is 
+increasing, if the crime rate is staying the same, or decreasing as we observed
+previously, there is still no valid reason to incarcerate more people.
+
+
+### How does crime differ for different regions of the US?
+
+Figure 5: \newline
+To see how crime differs by region, we made a variable called `region` which 
+splits up the United States into 4 distinct regions (North Central, Northeast, 
+South, and West). We decided to look at only property crime (burglary, larceny, 
+and vehicle theft) and so we plotted the total buglary, total larceny, total 
+vehicle theft, and overall total property crime from 2000-2016 on each regional 
+graph to see what the trends looked like. 
+
+One positive note with these graphs is that each region has a overall general 
+decline in the amount of property crime throughout 2000-2016. This is only a 
+speculation, but this would suggest that trends of property crime does 
+not differ throughout each region but it does for each crime. 
+
+The south overwhelmingly has the total highest property crime total burglary, 
+and total larceny.
+
+An outlier seems to be in the northeast graph in 2015 when there was sharp 
+decrease with larceny and burglary, and thus total property crime. There must
+have been policy that affected the Northeast only during that time period
+that lessened crime
+
+Because of the high number of crimes in the south and the downward spime for 
+the northwest graph that the north central and west regions are most similar
+in numbers of crimes committed over this 16 year span. 
+
+It is also interesting to see that the types of crimes themselves are 
+seemingly related. But this we mean that for each graph, from the highest number
+to the lowest number, the crimes are larceny, burglary, then vehicle theft. 
+
+If you were looking at a region to live in the united states and buy a house or 
+car, it seems that the best place to do that would be in the North East, 
+followed closely by the north central and west region. Thus it would be advised 
+to not choose the south, although they are on a decline in property crimes 
+committed. 
+
+
+### How does policy impact incarceration? This will be explored through the lens of hanging definition of rape.
+
+Figure 6: \newline
+
+In 2012 the FBI changed their definition of rape from:
+"The old definition was 'The carnal knowledge of a female forcibly and against
+her will.' Many agencies interpreted this definition as excluding a long list
+of sex offenses that are criminal in most jurisdictions, such as offenses
+involving oral or anal penetration, penetration with objects, and rapes of
+males. The new Summary definition of Rape is: 'Penetration, no matter how 
+slight, of the vagina or anus with any body part or object, or oral penetration 
+by a sex organ of another person, without the consent of the victim.'"
+ 
+We wanted to see how the change in definition affected the number of
+prisoners convicted for rape. Based on the graph, it seems like after the new
+definition was implemented, the number of prisoners who are incarcerated for
+rape increased. We will perform tests to find the p-value and try to
+determine if this is a correlation relationship or a causal relationship.
+
+\newpage
+
+```{r creating-proportion-variables, eval = FALSE, echo = FALSE}
+>>>>>>> ac84c99db0d2df0cf1263633692b4d8c66110e9d
+crime_props <- crime %>%
+  filter(jurisdiction != "FEDERAL") %>%
+  mutate(violent_crime_total_prop = (violent_crime_total / prisoner_count)) %>%
+  mutate(rape_legacy_prop = (rape_legacy / prisoner_count)) %>%
+  mutate(murder_manslaughter_prop = (murder_manslaughter / prisoner_count)) %>%
+  mutate(rape_revised_prop = (rape_revised / prisoner_count)) %>%
+  mutate(robbery_prop = (robbery / prisoner_count)) %>%
+  mutate(agg_asssault_prop = (agg_assault / prisoner_count)) %>%
+  mutate(property_crime_total_prop = 
+           (property_crime_total / prisoner_count)) %>%
+  mutate(burglary_prop = (burglary / prisoner_count)) %>%
+  mutate(larceny_prop = (larceny / prisoner_count)) %>%
+  mutate(vehicle_theft_prop = (vehicle_theft / prisoner_count))
+ 
+crime_props <- crime_props %>%
+  group_by(year) %>%
+  mutate(total_rape_legacy_prop = 
+           (sum(rape_legacy_prop)/sum(prisoner_count))) %>%
+  mutate(total_murder_manslaughter_prop = 
+           (sum(murder_manslaughter_prop)/sum(prisoner_count))) %>%
+  mutate(total_rape_revised_prop = 
+           (sum(rape_revised_prop)/sum(prisoner_count))) %>%
+  mutate(total_robbery_prop = (sum(robbery_prop)/sum(prisoner_count))) %>%
+  mutate(total_agg_assault_prop = 
+           (sum(agg_asssault_prop)/sum(prisoner_count))) %>%
+  mutate(total_burglary_prop = (sum(burglary_prop)/sum(prisoner_count))) %>%
+  mutate(total_larceny_prop = (sum(larceny_prop)/sum(prisoner_count))) %>%
+  mutate(total_vehicle_theft_prop = 
+           (sum(vehicle_theft_prop)/sum(prisoner_count))) %>%
+  mutate(total_violent_crime_total = 
+           (sum(violent_crime_total_prop)/sum(prisoner_count))) %>%
+  mutate(total_property_crime_total = 
+           (sum(property_crime_total_prop)/sum(prisoner_count)))
+ 
+```
+ 
+```{r proportion-of-crimes-including-larcency, echo = FALSE, warning = FALSE, message = FALSE, eval = FALSE}
+ggplot(data = crime_props, mapping = aes(x = year)) +
+  geom_line(aes(y = total_rape_legacy_prop), color = "red", 
+            linetype="twodash") +
+  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue", 
+            linetype="twodash") +
+  geom_line(aes(y = total_rape_revised_prop), color = "green", 
+            linetype="twodash") +
+  geom_line(aes(y = total_robbery_prop), color = "yellow", 
+            linetype="twodash") +
+  geom_line(aes(y = total_agg_assault_prop), color = "purple", 
+            linetype="twodash") +
+  geom_line(aes(y = total_burglary_prop), color = "pink") +
+  geom_line(aes(y = total_larceny_prop), color = "orange") +
+  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta")
+  labs(title = "",
+     x = "Year",
+     y = "Proportion of prisoners convicted of each crime
+            (not including federal incarcerated people)",
+     caption = "Red = Proportion of Rape by legacy definiton
+                Blue = Proportion of murder/manslaughter
+                Green = Proportion of Rape by revised definition
+                Yellow = Proportion of robbery
+                Purple = Proportion of aggravated assault
+                Pink = Proportion of burglary
+                Orange = Proportion of larceny
+                Magenta = Proportion of vehicle theft")
+```
+
+```{r proportion-of-crimes-including-larcency-2, echo = FALSE, warning=FALSE, message=FALSE, eval = FALSE}
+ggplot(data = crime_props, mapping = aes(x = year)) +
+  geom_line(aes(y = total_rape_legacy_prop), color = "red", linetype="twodash") +
+  geom_line(aes(y = total_murder_manslaughter_prop), color = "blue",linetype="twodash") +
+  geom_line(aes(y = total_rape_revised_prop), color = "green",linetype="twodash") +
+  geom_line(aes(y = total_robbery_prop), color = "yellow",linetype="twodash") +
+  geom_line(aes(y = total_agg_assault_prop), color = "purple",linetype="twodash") +
+  geom_line(aes(y = total_burglary_prop), color = "pink") +
+  geom_line(aes(y = total_vehicle_theft_prop), color = "magenta") +
+  labs(title = "",
+     x = "Year",
+     y = "Proportion of prisoners convicted of each crime
+            (not including federal incarcerated people)",
+     caption = "Red = Proportion of Rape by legacy definiton
+                Blue = Proportion of murder/manslaughter
+                Green = Proportion of Rape by revised definition
+                Yellow = Proportion of robbery
+                Purple = Proportion of aggravated assault
+                Pink = Proportion of burglary
+                Magenta = Proportion of vehicle theft")
+```
+ 
+```{r plot-violent-nonviolent-crimes, echo = FALSE, eval = FALSE}
+ggplot(data = crime_props, mapping = aes(x = year)) +
+  geom_line(aes(y = total_violent_crime_total), color = "red") +
+  geom_line(aes(y = total_property_crime_total), color = "blue") +
+  labs(title = "",
+     x = "Year",
+     y = "Proportion of prisoners convicted of each type of crime
+            (not including federal incarcerated people)")
+```
+<!-- We wanted to see how the proportions of crimes were divided among the -->
+<!-- prior population. Also we wanted to see whether violent or non-violent crimes -->
+<!-- were represented more among the prison population. It appears that non violent -->
+<!-- crimes make up a larger proportion of the prison population than violent crimes. -->
+<!-- Generally, violent and non-violent crimes are decreasing in regards to  -->
+<!-- proportion of the prison population. Nonviolent crimes seem to be decreasing at  -->
+<!-- a faster rate than violent crimes. Larceny makes up the largest proportion of  -->
+<!-- crimes in the prison population. So we took it out for the second visualization -->
+<!-- to get a better look at the other crimes. Murder and manslaughter make up the -->
+<!-- smallest proportion. -->
+
+
+<!-- How do trends in different crimes compare to each other? Do they move 
+together or do they change individually? -->
+
+```{r new-dataset, echo = FALSE, warning=FALSE, message=FALSE, eval = FALSE}
+totals_by_year <- state_crime %>%
+  group_by(year) %>%
+  summarise(violent_crime_total = sum(violent_crime_total),
+            robbery = sum(robbery),
+            agg_assault = sum(agg_assault),
+            property_crime_total = sum(property_crime_total),
+            burglary = sum(burglary),
+            larceny = sum(larceny),
+            vehicle_theft = sum(vehicle_theft))
+
+# for some reason 2015 didn't get added to my dataset
+```
+
+
+```{r line-graph, eval = FALSE, echo = FALSE}
+ggplot(data = totals_by_year,
+       aes(x = year)) +
+  geom_line(aes(y = violent_crime_total), color = "red") +
+  geom_line(aes(y = robbery), color = "blue") +
+  geom_line(aes(y = agg_assault), color = "green") +
+  geom_line(aes(y = property_crime_total), color = "yellow") +
+  geom_line(aes(y = burglary), color = "pink") +
+  geom_line(aes(y = larceny), color = "black") +
+  geom_line(aes(y = vehicle_theft), color = "purple")
+
+#not a very effective visualization
+  
+```
+
+
+```{r reg-analysis-graphs, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+
+ggplot(data = totals_by_year, aes(x = year, y = violent_crime_total)) +
+  geom_line() +
+  geom_smooth(method = lm)
+
+ggplot(data = totals_by_year, aes(x = year, y = robbery)) +
+  geom_line() +
+  geom_smooth(method = lm)
+
+ggplot(data = totals_by_year, aes(x = year, y = agg_assault)) +
+  geom_line() +
+  geom_smooth(method = lm)
+
+ggplot(data = totals_by_year, aes(x = year, y = property_crime_total)) +
+  geom_line() +
+  geom_smooth(method = lm)
+
+ggplot(data = totals_by_year, aes(x = year, y = burglary)) +
+  geom_line() +
+  geom_smooth(method = lm)
+
+ggplot(data = totals_by_year, aes(x = year, y = larceny)) +
+  geom_line() +
+  geom_smooth(method = lm)
+
+ggplot(data = totals_by_year, aes(x = year, y = vehicle_theft)) +
+  geom_line() +
+  geom_smooth(method = lm)
 
 ```
 
 
+
+```{r fitted-model, eval = FALSE, echo = FALSE}
+
+violent_crime_total_model <- lm(violent_crime_total ~ year, 
+                                data = totals_by_year)
+tidy(violent_crime_total_model)
+
+
+robbery_model <- lm(robbery ~ year, data = totals_by_year)
+tidy(robbery_model)
+
+
+agg_assault_model <- lm(agg_assault ~ year, data = totals_by_year)
+tidy(agg_assault_model)
+
+
+property_crime_total_model <- lm(property_crime_total ~ year, 
+                                 data = totals_by_year)
+tidy(property_crime_total_model)
+
+
+burglary_model <- lm(burglary ~ year, data = totals_by_year)
+tidy(burglary_model)
+
+
+larceny_model <- lm(larceny ~ year, data = totals_by_year)
+tidy(larceny_model)
+
+
+vehicle_theft_model <- lm(vehicle_theft ~ year, data = totals_by_year)
+tidy(vehicle_theft_model)
+
+```
+
+<!-- Here we attempted to answer whether different types of crime change together -->
+<!-- over the years or if different crimes fluctuate in different years. We used  -->
+<!-- data from the variables `violent_crime_total`, `robbery`, `agg_assault`, -->
+<!-- `property_crime_total`, `burglary`, `larceny`, and `vehicle_theft`. -->
+
+<!-- After attempting to compare the shapes of the crime vs. year graphs all together, -->
+<!-- we found that the incredibly different scales make this task impossible to do -->
+<!-- on a single graph. We then graphed these different crimes on different graphs -->
+<!-- with linear models, making it easier to compare shape but still difficult to  -->
+<!-- make objective claims about this data. One notable feature we noticed was that -->
+<!-- there was a peak for many crimes between 2004 and 2008. We plan to research  -->
+<!-- further to find possible causations for these trends. -->
+
+
+<!-- Last, we created linear models for each crime to see how they each changed -->
+<!-- between 2001 and 2016. Notice, all of these 7 crimes have a negative slope -->
+<!-- meaning they overall decreased during this time period. The slopes vary in  -->
+<!-- magnitude from about -7000 crimes/year to about -180,000 crimes/year. -->
+
+
+## Discussion
+
+### (This section is a conclusion and discussion. This will require a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project or what you would do next if you were going to continue work on the project should also be included.)
+
+Talk about the lack of observational data. These are already big picture 
+statistics that don't tell individual stories. Might have been interesting
+to see individual statistics of each conviction over a period of time to 
+complement these base rates.
+
+Discuss the inclusion of jails in different states, the change in crime 
+reporting and the estimation of crime in some states. 
+(`includes_jails`, `crime_reporting_change`, `crimes_estimated`)
+
+
+
+
+## References
+
+https://www.prisonstudies.org/highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All
+
+https://www.aclu.org/blog/racial-justice/why-mass-incarceration-really-new-jim-crow
+
+https://www.aclu.org/issues/smart-justice/mass-incarceration
+
+https://www.kaggle.com/census/us-population-by-zip-code
+
+https://www.bjs.gov/index.cfm?ty=tp&tid=131 
+
+https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states?select=crime_and_incarceration_by_state.csv
+
+https://ucr.fbi.gov/recent-program-updates/new-rape-definition-frequently-asked-questions
