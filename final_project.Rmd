@@ -212,7 +212,8 @@ crime <- crime %>%
        x = "Year", 
        y = "Percent")
 ```
-```{r percent-pop-boxplot}
+
+```{r percent-pop}
 crime<- crime %>%
   group_by(jurisdiction) %>%
   mutate(percent_state_pop= 100*(prisoner_count/state_population))
@@ -350,13 +351,14 @@ crime_rape <- crime_rape %>%
                 Blue = Total Number of Prisoners convicted of rape
                         by the Revised Definition in state custody")
 ```
+
 ```{r policy-colorado}
-crime<- crime %>%
+col_crime<- crime %>%
  filter(jurisdiction == "COLORADO")%>%
   mutate(percent_col_pop= 100*(prisoner_count/state_population))
   
- crime %>% 
-  ggplot(crime, mapping= aes(x=year, y= percent_col_pop))+
+ col_crime %>% 
+  ggplot(col_crime, mapping= aes(x=year, y= percent_col_pop))+
   geom_line()+
   labs(title = "Percent Colorado State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
@@ -364,25 +366,24 @@ crime<- crime %>%
 ```
 
 ```{r policy-vermont}
-crime<- crime %>%
+ver_crime<- crime %>%
  filter(jurisdiction == "VERMONT")%>%
   mutate(percent_ver_pop= 100*(prisoner_count/state_population))
   
- crime %>% 
-  ggplot(crime, mapping= aes(x=year, y= percent_ver_pop))+
+ ver_crime %>% 
+  ggplot(ver_crime, mapping= aes(x=year, y= percent_ver_pop))+
   geom_line()+
   labs(title = "Percent Vermont State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
   theme_linedraw()
 ```
-
 ```{r policy-washington}
-crime<- crime %>%
+was_crime<- crime %>%
  filter(jurisdiction == "WASHINGTON")%>%
   mutate(percent_was_pop= 100*(prisoner_count/state_population))
   
- crime %>% 
-  ggplot(crime, mapping= aes(x=year, y= percent_was_pop))+
+ was_crime %>% 
+  ggplot(was_crime, mapping= aes(x=year, y= percent_was_pop))+
   geom_line()+
   labs(title = "Percent Washington State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
