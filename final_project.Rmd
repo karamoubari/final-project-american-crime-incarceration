@@ -125,8 +125,10 @@ self-propelled vehicle that runs on land surfaces and not on rails.
 
 
 ### Statistical Methods
-(We need to introduce and justify the statistical method(s) that we believe will 
-be useful in answering the research question(s).)
+To answer the research questions we are exploring we utilized various 
+statistical methods using R. More specifically, we used data visualization, 
+and linear regression, to both see the current issue and extrapolate and make
+predictions outside the scope of the given data.
 
 
 ### Summary Statistics and Visualizations
@@ -142,7 +144,7 @@ between 2001 and 2007 before a steady decrease afterwards. In Figure 4, we
 mapped out the proportion of each state's population that was imprisoned in 2016
 to get a clearer idea of which states contribute most the issue of mass 
 incarceration. Most noticeably, Delaware, Oklahoma, and Arizona have have much 
-higher imprisonment proportions than the rest of the country.
+higher imprisonment proportions than the rest of the country. \newpage
 
 ```{r packages-data, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
@@ -207,13 +209,13 @@ crime <- crime %>%
   ggplot(crime, mapping = aes(x = year, 
                               y = percent_pop_us))+
   geom_line() +
-  labs(title = " Figure 3: Percent Population Incarcerated",
+  labs(title = " Figure 3.1: Percent Population Incarcerated",
        subtitle = "between 2001 and 2016",
        x = "Year", 
        y = "Percent")
 ```
 
-```{r percent-pop}
+```{r percent-pop, echo = FALSE}
 crime<- crime %>%
   group_by(jurisdiction) %>%
   mutate(percent_state_pop= 100*(prisoner_count/state_population))
@@ -221,7 +223,7 @@ crime<- crime %>%
  crime %>% 
   ggplot(crime, mapping= aes(x=as.factor(year), y= percent_state_pop))+
   geom_boxplot()+
-  labs(title = "Percent State Population Incarcerated",
+  labs(title = "Figure 3.2: Percent State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
   theme_linedraw()
 ```
@@ -324,6 +326,7 @@ ggplot(year_crime, aes(x=year)) +
   scale_y_continuous(name="Number of Crimes", labels = scales::comma) +
   labs(title = " Figure 5: Yearly Crime by Region in the United States")
 ```
+
 ```{r ggplot-of-rape-convictions, echo = FALSE}
 crime_rape <- crime
 crime_rape[is.na(crime_rape)] <- 0
@@ -352,7 +355,7 @@ crime_rape <- crime_rape %>%
                         by the Revised Definition in state custody")
 ```
 
-```{r policy-colorado}
+```{r policy-colorado, echo = FALSE}
 col_crime<- crime %>%
  filter(jurisdiction == "COLORADO")%>%
   mutate(percent_col_pop= 100*(prisoner_count/state_population))
@@ -360,12 +363,12 @@ col_crime<- crime %>%
  col_crime %>% 
   ggplot(col_crime, mapping= aes(x=year, y= percent_col_pop))+
   geom_line()+
-  labs(title = "Percent Colorado State Population Incarcerated",
+  labs(title = "Figure 7: Percent Colorado State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
   theme_linedraw()
 ```
 
-```{r policy-vermont}
+```{r policy-vermont, echo = FALSE}
 ver_crime<- crime %>%
  filter(jurisdiction == "VERMONT")%>%
   mutate(percent_ver_pop= 100*(prisoner_count/state_population))
@@ -373,11 +376,12 @@ ver_crime<- crime %>%
  ver_crime %>% 
   ggplot(ver_crime, mapping= aes(x=year, y= percent_ver_pop))+
   geom_line()+
-  labs(title = "Percent Vermont State Population Incarcerated",
+  labs(title = "Figure 8: Percent Vermont State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
   theme_linedraw()
 ```
-```{r policy-washington}
+
+```{r policy-washington, echo = FALSE}
 was_crime<- crime %>%
  filter(jurisdiction == "WASHINGTON")%>%
   mutate(percent_was_pop= 100*(prisoner_count/state_population))
@@ -385,7 +389,7 @@ was_crime<- crime %>%
  was_crime %>% 
   ggplot(was_crime, mapping= aes(x=year, y= percent_was_pop))+
   geom_line()+
-  labs(title = "Percent Washington State Population Incarcerated",
+  labs(title = "Figure 9: Percent Washington State Population Incarcerated",
   x = "Year", y= "Percent Population Incarcerated") +
   theme_linedraw()
 ```
@@ -413,7 +417,7 @@ that if the US has a strong belief that we need to be tough on crime, the high
 rates of incarceration are due to high crime rates, violent or otherwise. With 
 this in mind, we wanted to find if the data would support this hypothesis.
 
-Figure 1 and 2: \newline
+Figure 1 and Figure 2: \newline
 What is immediately evident is that even when crime of all types was sharply 
 increasing, the number of incarcerated individuals was still steadily 
 decreasing. Based on this alone, though we cannot definitively draw this 
@@ -423,7 +427,7 @@ factors which we will explore later in our analyses. Possible explanations might
 be policy changes, new sentencing guidelines, amount of policing, and a plethora 
 of other reasons.
 
-Figure 3 and 4: \newline
+Figure 3.1, Figure 3.2, and Figure 4: \newline
 After drawing the previous conclusion, we thought there may be another 
 explanation, even if crime was going down it could be that US population was 
 increasing, when we graphed it above, it would appear that the percent of the 
@@ -510,6 +514,8 @@ defintion for rape. This is not to say that this change contributed
 significantly to mass incarceration or that the change in definition was unjust. 
 Rather, this example in our data exemplifies the impact of policies on 
 incarceration rather than crime rate.
+
+Figure 7, Figure 8, Figure 9: \newline
 
 
 ### Future of the issue through basic predictive modeling:
