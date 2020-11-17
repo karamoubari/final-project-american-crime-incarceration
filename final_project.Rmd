@@ -166,11 +166,11 @@ crime <- crime %>%
 ```{r percent-pop, echo = FALSE}
 crime <- crime %>%
   group_by(year)%>%
-  mutate(percent_pop = 100 * sum(prisoner_count)/sum(state_population))
+  mutate(percent_pop_us = 100 * sum(prisoner_count)/sum(state_population))
  
  crime %>%
   ggplot(crime, mapping = aes(x = year, 
-                              y = percent_pop))+
+                              y = percent_pop_us))+
   geom_line() +
   labs(title = " Figure 3: Percent Population Incarcerated",
        subtitle = "between 2001 and 2016",
@@ -408,13 +408,66 @@ definition was implemented, the number of prisoners who are incarcerated for
 rape increased. We will perform tests to find the p-value and try to
 determine if this is a correlation relationship or a causal relationship.
 
-This one change in policy had obvious impacts on the number of people incarcerated for the crime. While it is only a small example, it supports theories on incarceration that emphasize the role of laws and policies on the number of people incarcerated rather than the actual number of crimes committed. This is assuming a causal relationship between the policy change and the number of people incarcerated.
-The creation and enforcement of policy has a greater impact on who is incarcerated and how many people are incarcerated for each crime than the actual rate of crime. Despite public perception assuming the opposite relationship. Many times the policies can be used to adjust a narrative to support a political movement or idea at the time. Crime rates can increase when policy is adjusted to include more crime as seen with the change in defintion for rape. This is not to say that this change contributed significantly to mass incarceration or that the change in definition was unjust. Rather, this example in our data exemplifies the impact of policies on incarceration rather than crime rate.
+This one change in policy had obvious impacts on the number of people 
+incarcerated for the crime. While it is only a small example, it supports 
+theories on incarceration that emphasize the role of laws and policies on the 
+number of people incarcerated rather than the actual number of crimes committed. 
+
+This is assuming a causal relationship between the policy change and the number 
+of people incarcerated. The creation and enforcement of policy has a greater 
+impact on who is incarcerated and how many people are incarcerated for each 
+crime than the actual rate of crime. Despite public perception assuming the 
+opposite relationship. Many times the policies can be used to adjust a narrative 
+to support a political movement or idea at the time. Crime rates can increase 
+when policy is adjusted to include more crime as seen with the change in 
+defintion for rape. This is not to say that this change contributed 
+significantly to mass incarceration or that the change in definition was unjust. 
+Rather, this example in our data exemplifies the impact of policies on 
+incarceration rather than crime rate.
 
 
 ### Future of the issue through basic predictive modeling:
 
-Talk about it here...
+To explore the future of prison incarceration in the United States, we chose to
+create a linear model that we could use to extrapolate and make broad 
+predictions about years past 2016. In addition, we though it would be 
+interesting to compare these predicted numbers to the actual statistics from 
+2017, 2018, and 2019. This way we could evaluate the strength of our linear 
+model and make a general assessment as to whether it is possible to predict
+the future of prison incarceration using past data, or whether these statistics
+are better determined by other factors such as public policy changes.
+
+```{r future-proportions, echo = FALSE, message = FALSE, warning = FALSE}
+prop_pred <- lm(percent_pop_us ~ year, data = crime)
+tidy(prop_pred)
+```
+pred. % incarcerated = 5.03374618 - 0.00229865(year)
+
+- This linear model implies that in the year 0, on average, the predicted 
+percentage incarcerated in the United States was about 5% (a huge and 
+unreasonable extrapolation). It also implies that all else held constant with 
+each passing year, the percentage incarcerated in the United States is expected
+to decrease by about .002%.
+\newline
+
+pred. % incarcerated in 2017 = 5.03374618 - 0.00229865(2017)
+pred. % incarcerated in 2017 = `r 5.03374618 - 0.00229865*(2017)`
+actual % incarcerated in 2017 = `r 100*(1486000/325100000)` \newline
+
+
+pred. % incarcerated in 2018 = 5.03374618 - 0.00229865(2018)
+pred. % incarcerated in 2018 = `r 5.03374618 - 0.00229865*(2018)`
+actual % incarcerated in 2018 = `r 100*(1471200/327200000)` \newline
+
+
+pred. % incarcerated in 2019 = 5.03374618 - 0.00229865(2019)
+pred. % incarcerated in 2019 = `r 5.03374618 - 0.00229865*(2019)`
+actual % incarcerated in 2019 = `r 100*(1435500/328200000)` \newline
+
+When compared to the actual data it is clear that this data slightly 
+underestimates the percent incarcerated in the United States when 
+extrapolated. 
+
 
 \newpage
 
