@@ -439,7 +439,8 @@ are better determined by other factors such as public policy changes.
 
 ```{r future-proportions, echo = FALSE, message = FALSE, warning = FALSE}
 prop_pred <- lm(percent_pop_us ~ year, data = crime)
-tidy(prop_pred)
+tidy(prop_pred) %>%
+  select(term, estimate)
 ```
 pred. % incarcerated = 5.03374618 - 0.00229865(year)
 
@@ -450,23 +451,25 @@ each passing year, the percentage incarcerated in the United States is expected
 to decrease by about .002%.
 \newline
 
-pred. % incarcerated in 2017 = 5.03374618 - 0.00229865(2017)
-pred. % incarcerated in 2017 = `r 5.03374618 - 0.00229865*(2017)`
+pred. % incarcerated in 2017 = 5.03374618 - 0.00229865(2017)\newline
+pred. % incarcerated in 2017 = `r 5.03374618 - 0.00229865*(2017)`\newline
 actual % incarcerated in 2017 = `r 100*(1486000/325100000)` \newline
 
 
-pred. % incarcerated in 2018 = 5.03374618 - 0.00229865(2018)
-pred. % incarcerated in 2018 = `r 5.03374618 - 0.00229865*(2018)`
+pred. % incarcerated in 2018 = 5.03374618 - 0.00229865(2018)\newline
+pred. % incarcerated in 2018 = `r 5.03374618 - 0.00229865*(2018)`\newline
 actual % incarcerated in 2018 = `r 100*(1471200/327200000)` \newline
 
 
-pred. % incarcerated in 2019 = 5.03374618 - 0.00229865(2019)
-pred. % incarcerated in 2019 = `r 5.03374618 - 0.00229865*(2019)`
+pred. % incarcerated in 2019 = 5.03374618 - 0.00229865(2019)\newline
+pred. % incarcerated in 2019 = `r 5.03374618 - 0.00229865*(2019)`\newline
 actual % incarcerated in 2019 = `r 100*(1435500/328200000)` \newline
 
 When compared to the actual data it is clear that this data slightly 
 underestimates the percent incarcerated in the United States when 
-extrapolated. 
+extrapolated. In addition, it is likely inaccurate to extrapolate further than
+just a few years, since it is unlikely that incarceration rates will continue
+to drop forever. 
 
 
 \newpage
