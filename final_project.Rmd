@@ -165,9 +165,8 @@ crime <- crime %>%
   group_by(year) %>%
   mutate(total_prisoner_per_year = sum(prisoner_count))
  
- crime %>%
-  ggplot(crime, mapping = aes(x = year, 
-                             y = total_prisoner_per_year)) +
+crime %>%
+  ggplot(crime, mapping = aes(x = year, y = total_prisoner_per_year)) +
   geom_line() +
   labs(title = "Figure 1: Total US Prisoners", 
        subtitle = "between 2001 and 2016",
@@ -215,8 +214,9 @@ crime <- crime %>%
 ```
 ```{r percent-pop-boxplot}
 crime<- crime %>%
- group_by(jurisdiction)%>%
+  group_by(jurisdiction) %>%
   mutate(percent_state_pop= 100*(prisoner_count/state_population))
+
  crime %>% 
   ggplot(crime, mapping= aes(x=as.factor(year), y= percent_state_pop))+
   geom_boxplot()+
@@ -239,7 +239,7 @@ prop_map_2016 <- left_join(states_map,
 
 ggplot(prop_map_2016, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill = prisoner_per_pop)) +
-  scale_fill_viridis_c(option = "B", direction=-1) + 
+  scale_fill_viridis_c(option = "B", direction = -1) + 
   labs(title = "Figure 4: 2016 Prisoner Proportions",
        subtitle = "by state",
        fill = "Number of prisoners per person")
