@@ -138,13 +138,14 @@ visualize the total number of prisoners in the US from 2001 to 2016. As we can
 see the graph shows a steady incline from 2001 to 2008 and then a steady decline 
 followed by a sharp decline thereafter. In Figure 2, we visualize the amount of 
 crime in the US and notice that it decreases quite steadily between 2001 and 
-2016. In Figure 3, we examine the change in the proportion of the population
+2016. . In Figure 3.1, we examine the change in the proportion of the population
 that is imprisoned between 2001 and 2016. This shows us a steady increase 
-between 2001 and 2007 before a steady decrease afterwards. In Figure 4, we 
+between 2001 and 2007 before a steady decrease afterwards. Figure 3.2 shows the same information in terms of the percent of a states population that is incarcerated in a box plot rather than a line graph. The box plot shows that though the median percent of the population does not change significantly from year to year, certain years have a larger spread and large outliers. These outliers are further explained in Figure 4 where we 
 mapped out the proportion of each state's population that was imprisoned in 2016
 to get a clearer idea of which states contribute most the issue of mass 
 incarceration. Most noticeably, Delaware, Oklahoma, and Arizona have have much 
-higher imprisonment proportions than the rest of the country. \newpage
+higher imprisonment proportions than the rest of the country. These are likely the outliers in the boxplot from Figure 3.2. 
+ \newpage
 
 ```{r packages-data, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
@@ -170,10 +171,12 @@ crime <- crime %>%
 crime %>%
   ggplot(crime, mapping = aes(x = year, y = total_prisoner_per_year)) +
   geom_line() +
-  labs(title = "Figure 1: Total US Prisoners", 
-       subtitle = "between 2001 and 2016",
+  labs(title = "Total US Prisoners", 
+       subtitle = "2001 to 2016",
        x = "Year", 
-       y = "Count")
+       y = "Count",
+       caption= "Figure 1")+
+  theme_linedraw()
 ```
 
 ```{r total-crime, echo = FALSE}
@@ -195,9 +198,11 @@ crime <- crime %>%
   ggplot(crime, mapping= aes(x=year, y=total_crime)) +
   geom_line() +
   scale_y_continuous(name="Count", labels = scales::comma) +
-  labs(title = "Figure 2: Total Crime in the US",
-       subtitle = "from 2001 to 2016",
-  x = "Year", y = "Count")
+  labs(title = "Total Crime in the US",
+  subtitle= "2001 to 2016",
+  x = "Year", y = "Count",
+       caption= "Figure 2")+
+  theme_linedraw()
 ```
 
 ```{r percent-pop-linegraph, echo = FALSE}
@@ -209,10 +214,12 @@ crime <- crime %>%
   ggplot(crime, mapping = aes(x = year, 
                               y = percent_pop_us))+
   geom_line() +
-  labs(title = " Figure 3.1: Percent Population Incarcerated",
-       subtitle = "between 2001 and 2016",
+  labs(title = " Percent US Population Incarcerated",
+       subtitle = "2001 to 2016",
        x = "Year", 
-       y = "Percent")
+       y = "Percent",
+       caption= "Figure 3.1")+
+  theme_linedraw()
 ```
 
 ```{r percent-pop, echo = FALSE}
@@ -223,12 +230,14 @@ crime<- crime %>%
  crime %>% 
   ggplot(crime, mapping= aes(x=as.factor(year), y= percent_state_pop))+
   geom_boxplot()+
-  labs(title = "Figure 3.2: Percent State Population Incarcerated",
-  x = "Year", y= "Percent Population Incarcerated") +
+  labs(title = "Percent State Population Incarcerated",
+       subtitle = "2001 to 2016",
+  x = "Year", y= "Percent",
+       caption= "Figure 3.2")+
   theme_linedraw()
 ```
 
-```{r prisoner-prop-map, echo = FALSE}
+```{r prisoner-prop-map, fig.height= 6, fig.width= 11, echo = FALSE}
 prop_pris_2016 <- state_crime %>%
   filter(year == 2016) %>%
   mutate(prisoner_per_pop = prisoner_count/state_population) %>%
@@ -243,9 +252,11 @@ prop_map_2016 <- left_join(states_map,
 ggplot(prop_map_2016, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill = prisoner_per_pop)) +
   scale_fill_viridis_c(option = "B", direction = -1) + 
-  labs(title = "Figure 4: 2016 Prisoner Proportions",
+  labs(title = "2016 Prisoner Proportions",
        subtitle = "by state",
-       fill = "Number of prisoners per person")
+       fill = "Number of prisoners per person",
+       caption= "Figure 4")+
+  theme_linedraw()
 ```
 
 ```{r crime-by-region, echo=FALSE, warning = FALSE, message = FALSE}
@@ -324,7 +335,9 @@ ggplot(year_crime, aes(x=year)) +
                       values = c("red3", "steelblue", "springgreen4", "orangered2")) +
   facet_wrap(~region) +
   scale_y_continuous(name="Number of Crimes", labels = scales::comma) +
-  labs(title = " Figure 5: Yearly Crime by Region in the United States")
+  labs(title = " Yearly Crime by Region in the United States", 
+       caption = "Figure 5")+
+  theme_linedraw()
 ```
 
 ```{r ggplot-of-rape-convictions, echo = FALSE}
@@ -345,14 +358,16 @@ crime_rape <- crime_rape %>%
   geom_line(aes(y = total_rape_legacy), color = "red") +
     geom_line(aes(y = total_rape_revised), color = "blue") +
     geom_vline(xintercept = 2012) +
-    labs(title="Figure 6: Revising definition of rape in 2012 led to more rape convictions",
+    labs(title="Revising definition of rape in 2012 led to more rape convictions",
      x = "Year",
      y = "Number of Rape Convictions",
-     caption = "Red = Total Number of Prisoners convicted of rape
+     caption = "Figure 6 
+     Red = Total Number of Prisoners convicted of rape
                       by the Legacy Definition in state custody
                       
                 Blue = Total Number of Prisoners convicted of rape
-                        by the Revised Definition in state custody")
+                        by the Revised Definition in state custody")+ 
+    theme_linedraw()
 ```
 
 ```{r policy-colorado, echo = FALSE}
@@ -363,8 +378,9 @@ col_crime<- crime %>%
  col_crime %>% 
   ggplot(col_crime, mapping= aes(x=year, y= percent_col_pop))+
   geom_line()+
-  labs(title = "Figure 7: Percent Colorado State Population Incarcerated",
-  x = "Year", y= "Percent Population Incarcerated") +
+  labs(title = "Percent Colorado State Population Incarcerated",
+  x = "Year", y= "Percent Population Incarcerated", 
+  caption = "Figure 7.1") +
   theme_linedraw()
 ```
 
@@ -376,8 +392,8 @@ ver_crime<- crime %>%
  ver_crime %>% 
   ggplot(ver_crime, mapping= aes(x=year, y= percent_ver_pop))+
   geom_line()+
-  labs(title = "Figure 8: Percent Vermont State Population Incarcerated",
-  x = "Year", y= "Percent Population Incarcerated") +
+  labs(title = "Percent Vermont State Population Incarcerated",
+  x = "Year", y= "Percent Population Incarcerated", caption= "Figure 7.2") +
   theme_linedraw()
 ```
 
@@ -389,8 +405,8 @@ was_crime<- crime %>%
  was_crime %>% 
   ggplot(was_crime, mapping= aes(x=year, y= percent_was_pop))+
   geom_line()+
-  labs(title = "Figure 9: Percent Washington State Population Incarcerated",
-  x = "Year", y= "Percent Population Incarcerated") +
+  labs(title = "Percent Washington State Population Incarcerated",
+  x = "Year", y= "Percent Population Incarcerated", caption= "Figure 7.3") +
   theme_linedraw()
 ```
 \newpage
@@ -480,7 +496,8 @@ committed.
 ### How the results and the issue connect to non-statistical public policy
 
 How does policy impact incarceration? This will be explored through the lens of 
-changing definition of rape.
+changing definition of rape as well as through three states which decriminalized 
+marijuana within the time frame of the data set. 
 
 Figure 6: \newline
 In 2012 the FBI changed their definition of rape from:
@@ -515,7 +532,22 @@ significantly to mass incarceration or that the change in definition was unjust.
 Rather, this example in our data exemplifies the impact of policies on 
 incarceration rather than crime rate.
 
-Figure 7, Figure 8, Figure 9: \newline
+Figure 7.1, Figure 7.2, and Figure 7.3: \newline
+Colorado and Washington were the first US states to decriminalize the use of 
+marijuana for recreational purposes in 2012 and Vermont followed suit in 2013. 
+We wanted to see if there would be any notable decline in incarceration in these
+three states after recreational legalization. It is unfortunate that drug crimes
+were not included in the data set as the War on Drugs is responsible for 30-50% 
+of the incarceration that we see today. Nonetheless, we thought we could seek to 
+find if there was a notable decline in incarceration after 2012 in Colorado and 
+Washington and after 2013 in Vermont. Figures 7.2 and 7.3 for Vermont and 
+Washington state, respectively,show pretty strong evidence for a sharp decline 
+in incarceration after recreational legalization. Figure 7.1 for Colorado is 
+less convincing as the incarceration rate leading up to 2012 was already on the 
+decline, however, the incarceration most certainly does not increase with 
+recreational legalization, which is definitely not enough to call it a causal 
+relationship, however, it is pretty compelling evidence. 
+
 
 
 ### Future of the issue through basic predictive modeling:
