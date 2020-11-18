@@ -616,16 +616,31 @@ reporting and the estimation of crime in some states.
 
 ## References
 
-https://www.prisonstudies.org/highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All
+C., Chris. “Crime and Incarceration in the United States: 21st Century State 
+Crime and Prison Custody Statistics.” Kaggle, 2018, www.kaggle.com/
+christophercorrea/prisoners-and-crime-in-united-states?select=crime_and_
+incarceration_by_state.csv. 
 
-https://www.aclu.org/blog/racial-justice/why-mass-incarceration-really-new-jim-crow
+Chettiar, Inimai. Why Mass Incarceration Really Is the New Jim Crow. 
+American Civil Liberties Union, 8 Mar. 2012, www.aclu.org/blog/racial-
+justice/why-mass-incarceration-really-new-jim-crow. 
 
-https://www.aclu.org/issues/smart-justice/mass-incarceration
+“Frequently Asked Questions about the Change in the UCR Definition of Rape.” 
+Federal Bureau of Investigations , 11 Dec. 2014. 
 
-https://www.kaggle.com/census/us-population-by-zip-code
+“Highest to Lowest - Prison Population Total.” World Prison Brief, 
+Institute for Crime and Justice Policy Research, www.prisonstudies.org/
+highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All. 
 
-https://www.bjs.gov/index.cfm?ty=tp&tid=131 
+Kang-Brown, Jacob, et al. People in Prison in 2019. Vera Institute for 
+Justice, May 2020, 
+www.vera.org/publications/people-in-prison-in-2019. 
 
-https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states?select=crime_and_incarceration_by_state.csv
+“Mass Incarceration.” American Civil Liberties Union, www.aclu.org/issues/
+smart-justice/mass-incarceration. 
 
-https://ucr.fbi.gov/recent-program-updates/new-rape-definition-frequently-asked-questions
+“Prison Population Counts.” Bureau of Justice Statistics (BJS), Office of 
+Justice Programs, 2019, www.bjs.gov/index.cfm?ty=tp. 
+
+US Census Bureau. “US Population By Zip Code for Both 2000 and 2010.” Kaggle, 
+2017, www.kaggle.com/census/us-population-by-zip-code. 
