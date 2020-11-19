@@ -140,11 +140,17 @@ followed by a sharp decline thereafter. In Figure 2, we visualize the amount of
 crime in the US and notice that it decreases quite steadily between 2001 and 
 2016. . In Figure 3.1, we examine the change in the proportion of the population
 that is imprisoned between 2001 and 2016. This shows us a steady increase 
-between 2001 and 2007 before a steady decrease afterwards. Figure 3.2 shows the same information in terms of the percent of a states population that is incarcerated in a box plot rather than a line graph. The box plot shows that though the median percent of the population does not change significantly from year to year, certain years have a larger spread and large outliers. These outliers are further explained in Figure 4 where we 
-mapped out the proportion of each state's population that was imprisoned in 2016
-to get a clearer idea of which states contribute most the issue of mass 
-incarceration. Most noticeably, Delaware, Oklahoma, and Arizona have have much 
-higher imprisonment proportions than the rest of the country. These are likely the outliers in the boxplot from Figure 3.2. 
+between 2001 and 2007 before a steady decrease afterwards. Figure 3.2 shows the 
+same information in terms of the percent of a states population that is 
+incarcerated in a box plot rather than a line graph. The box plot shows that 
+though the median percent of the population does not change significantly from 
+year to year, certain years have a larger spread and large outliers. These 
+outliers are further explained in Figure 4 where we mapped out the proportion of 
+each state's population that was imprisoned in 2016 to get a clearer idea of 
+which states contribute most the issue of mass incarceration. Most noticeably, 
+Delaware, Oklahoma, and Arizona have have much higher imprisonment proportions 
+than the rest of the country. These are likely the outliers in the boxplot from 
+Figure 3.2. 
  \newpage
 
 ```{r packages-data, echo = FALSE, warning=FALSE, message=FALSE}
@@ -329,7 +335,8 @@ ggplot(year_crime, aes(x=year)) +
   geom_line(aes(y = total_burglary, colour = "Total Burglary")) +
   geom_line(aes(y = total_larceny, colour = "Total Larceny")) +
   geom_line(aes(y = total_vehicle_theft, colour = "Total Vehicle Theft")) +
-  geom_line(aes(y = total_property_crime, colour = "Total Property Crime")) +
+  geom_line(aes(y = total_property_crime, colour = 
+            "Total Property Crime (sum of burglary, larceny, vehicle theft")) +
   scale_colour_manual("",
                       breaks = c("Total Burglary", "Total Larceny", "Total Vehicle Theft", "Total Property Crime"),
                       values = c("red3", "steelblue", "springgreen4", "orangered2")) +
@@ -361,12 +368,14 @@ crime_rape <- crime_rape %>%
     labs(title="Revising definition of rape in 2012 led to more rape convictions",
      x = "Year",
      y = "Number of Rape Convictions",
-     caption = "Figure 6 
+     caption = " 
      Red = Total Number of Prisoners convicted of rape
                       by the Legacy Definition in state custody
                       
                 Blue = Total Number of Prisoners convicted of rape
-                        by the Revised Definition in state custody")+ 
+                        by the Revised Definition in state custody
+                        
+                                                          Figure 6")+ 
     theme_linedraw()
 ```
 
@@ -416,13 +425,7 @@ was_crime<- crime %>%
 ### (Showcase how you arrived at answers to your question using any techniques we have learned in this class (and some beyond, if you’re feeling adventurous). Provide the main results from your analysis. The goal is not to do an exhaustive data analysis (i.e., do not calculate every statistic and procedure you have learned for every variable), but rather let me know that you are proficient at asking meaningful questions and answering them with results of data analysis, that you are proficient in using R, and that you are proficient at interpreting and presenting the results. Focus on methods that help you begin to answer your research questions.)
 
 
-
-(We can definitely use the linear regression methods we learned in the last
-unit here. Let's discuss this when we meet.)
-
 ### Understanding the extent of the issue of mass incarceration:
-
-Are the increasing incarceration numbers due to increasing crime rates? 
 
 Political rhetoric that has come to the forefront in recent decades is the idea 
 of law and order, being tough on crime, and ensuring punishment to the fullest 
@@ -453,7 +456,7 @@ increasing, if the crime rate is staying the same, or decreasing as we observed
 previously, there is still no valid reason to incarcerate more people.
 
 
-### Sub-statistics that can most explain the issue:
+### Sub-statistics that can better explain the issue:
 
 How does crime differ for different regions of the US?
 
@@ -602,30 +605,93 @@ to drop forever.
 
 ### (This section is a conclusion and discussion. This will require a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project or what you would do next if you were going to continue work on the project should also be included.)
 
-Talk about the lack of observational data. These are already big picture 
-statistics that don't tell individual stories. Might have been interesting
-to see individual statistics of each conviction over a period of time to 
-complement these base rates.
+• If we were to continue with this project we would improve our analysis by 
+looking for more political and event-based research to aid our graphs. For 
+example, in figure 5 there is an obvious dip in every crime for the northeast 
+region in ~2015. We spent a good amount of time trying to research this and see 
+if there was any policy implemented that would cause a significant dip or an 
+event that would cause crime to go down, but we were unsuccessful. Part of the 
+issue was that it may have been one state that caused most of the crime and they 
+themselves had something happen in 2015 that caused the entire northeast region 
+to dip. But because we put states into regions, it would be tedious, for the 
+amount of time we have to finish this project, to calculate the crime for every 
+state in it’s own graph and then see if one or a few states caused the dip. So 
+we believe that if we had more time, we would eventually be able to figure this 
+out to add more concrete observations/knowledge to the discussions of our 
+graphs.
 
-Discuss the inclusion of jails in different states, the change in crime 
-reporting and the estimation of crime in some states. 
-(`includes_jails`, `crime_reporting_change`, `crimes_estimated`)
+• We could test more of the literature on mass incarceration that revolves 
+around drug incarcerations if we could find a comparable data set to combine 
+with ours. The “War on Drugs” is viewed as one of the drivers of mass 
+incarceration in America but data on incarcerations for drug charges are not 
+included in this data set. There is also a relationship between drug 
+incarcerations and violent crimes that would be interesting to investigate further. 
 
+• Additionally, having access to demographic data among the prison populations 
+in the various states would allow us to investigate the racial and socioeconomic 
+disparities of mass incarceration. This would be important to understand the 
+implications of the population data especially if the data we found was in line 
+with most literature that states with “one out of every three Black boys born 
+today can expect to be sentenced to prison, compared 1 out 6 Latino boys; one 
+out of 17 white boys” (NAACP).
 
+• Considering that this is true population data instead of a sample population, 
+it was not possible to perform hypothesis testing or bootstrap sampling. It 
+could be interesting to find individual statistics of each conviction over a 
+period of time to provide more context to our base rates. However, there is a 
+benefit to having the true population data because our results will be reliable. 
+In addition, our use of base rates mean we don’t really have a clear picture of 
+the individuals and specific cases that are impacted by the issue.
+
+• The data set also has a few discrepancies in how the prison populations are 
+reported. Some states included jails in their incarcerated population data while 
+others only included prisons. This information is provided in the data under the 
+“include_jails” column but we did not factor this into our analysis as there is 
+no way to separate the jail and prison populations in the data set. 
+Additionally, throughout the data set there are four changes in how crime is 
+reported in Alabama and Montana in 2011, New York in 2012, and Georgia in 2015. 
+The actual changes in the methods of reporting are not included in the data set 
+but recognizing that the way crimes were reported would affect the data. Lastly, 
+in Kentucky and Illinois, there are multiple years where the crime totals are 
+estimates rather than exact data. This could also affect our data and our 
+analysis and should be taken into consideration.
+
+• In terms of the linear regression models, it is also important to note that
+these models might be better represented by another type of regression model
+such as a logistic one. This was not evaluated in the scope of the project. It
+is also relevant to note that the extrapolations for predicting future crime
+are extremely rough and aren't likely to accurately predict further than a few
+years into the future because previous crime rates are likely less indicative of
+future crime than a factor such as policy.
 
 
 ## References
 
-https://www.prisonstudies.org/highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All
+C., Chris. “Crime and Incarceration in the United States: 21st Century State 
+Crime and Prison Custody Statistics.” Kaggle, 2018, www.kaggle.com/
+christophercorrea/prisoners-and-crime-in-united-states?select=crime_and_
+incarceration_by_state.csv. 
 
-https://www.aclu.org/blog/racial-justice/why-mass-incarceration-really-new-jim-crow
+Chettiar, Inimai. Why Mass Incarceration Really Is the New Jim Crow. 
+American Civil Liberties Union, 8 Mar. 2012, www.aclu.org/blog/racial-
+justice/why-mass-incarceration-really-new-jim-crow. 
 
-https://www.aclu.org/issues/smart-justice/mass-incarceration
+“Frequently Asked Questions about the Change in the UCR Definition of Rape.” 
+Federal Bureau of Investigations , 11 Dec. 2014. 
 
-https://www.kaggle.com/census/us-population-by-zip-code
+“Highest to Lowest - Prison Population Total.” World Prison Brief, 
+Institute for Crime and Justice Policy Research, www.prisonstudies.org/
+highest-to-lowest/prison-population-total?field_region_taxonomy_tid=All. 
 
-https://www.bjs.gov/index.cfm?ty=tp&tid=131 
+Kang-Brown, Jacob, et al. People in Prison in 2019. Vera Institute for 
+Justice, May 2020, 
+www.vera.org/publications/people-in-prison-in-2019. 
 
-https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states?select=crime_and_incarceration_by_state.csv
+“Mass Incarceration.” American Civil Liberties Union, www.aclu.org/issues/
+smart-justice/mass-incarceration. 
 
-https://ucr.fbi.gov/recent-program-updates/new-rape-definition-frequently-asked-questions
+“Prison Population Counts.” Bureau of Justice Statistics (BJS), Office of 
+Justice Programs, 2019, www.bjs.gov/index.cfm?ty=tp. 
+
+US Census Bureau. “US Population By Zip Code for Both 2000 and 2010.” Kaggle, 
+2017, www.kaggle.com/census/us-population-by-zip-code. 
