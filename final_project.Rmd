@@ -335,7 +335,8 @@ ggplot(year_crime, aes(x=year)) +
   geom_line(aes(y = total_burglary, colour = "Total Burglary")) +
   geom_line(aes(y = total_larceny, colour = "Total Larceny")) +
   geom_line(aes(y = total_vehicle_theft, colour = "Total Vehicle Theft")) +
-  geom_line(aes(y = total_property_crime, colour = "Total Property Crime")) +
+  geom_line(aes(y = total_property_crime, colour = 
+            "Total Property Crime (sum of burglary, larceny, vehicle theft")) +
   scale_colour_manual("",
                       breaks = c("Total Burglary", "Total Larceny", "Total Vehicle Theft", "Total Property Crime"),
                       values = c("red3", "steelblue", "springgreen4", "orangered2")) +
