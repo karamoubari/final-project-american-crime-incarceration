@@ -604,7 +604,7 @@ to drop forever.
 
 ### (This section is a conclusion and discussion. This will require a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project or what you would do next if you were going to continue work on the project should also be included.)
 
-If we were to continue with this project we would improve our analysis by 
+• If we were to continue with this project we would improve our analysis by 
 looking for more political and event-based research to aid our graphs. For 
 example, in figure 5 there is an obvious dip in every crime for the northeast 
 region in ~2015. We spent a good amount of time trying to research this and see 
@@ -619,30 +619,30 @@ we believe that if we had more time, we would eventually be able to figure this
 out to add more concrete observations/knowledge to the discussions of our 
 graphs.
 
-We could test more of the literature on mass incarceration that revolves around 
-drug incarcerations if we could find a comparable data set to combine with our. 
-The “War on Drugs” is viewed as one of the drivers of mass incarceration in 
-America but data on incarcerations for drug charges are not included in this 
-data set. There is also a relationship between drug incarcerations and violent 
-crimes that would be interesting to investigate further. 
+• We could test more of the literature on mass incarceration that revolves 
+around drug incarcerations if we could find a comparable data set to combine 
+with ours. The “War on Drugs” is viewed as one of the drivers of mass 
+incarceration in America but data on incarcerations for drug charges are not 
+included in this data set. There is also a relationship between drug 
+incarcerations and violent crimes that would be interesting to investigate further. 
 
-Additionally, having access to demographic data among the prison populations in 
-the various states would allow us to investigate the racial and socioeconomic 
+• Additionally, having access to demographic data among the prison populations 
+in the various states would allow us to investigate the racial and socioeconomic 
 disparities of mass incarceration. This would be important to understand the 
 implications of the population data especially if the data we found was in line 
 with most literature that states with “one out of every three Black boys born 
 today can expect to be sentenced to prison, compared 1 out 6 Latino boys; one 
 out of 17 white boys” (NAACP).
 
-Considering that this is true population data instead of a sample population, it
-was not possible to perform hypothesis testing or bootstrap sampling. It could 
-be interesting to find individual statistics of each conviction over a period of 
-time to provide more context to our base rates. However, there is a benefit to 
-having the true population data because our results will be reliable. In 
-addition, our use of base rates mean we don’t really have a clear picture of the 
-individuals and specific cases that are impacted by the issue.
+• Considering that this is true population data instead of a sample population, 
+it was not possible to perform hypothesis testing or bootstrap sampling. It 
+could be interesting to find individual statistics of each conviction over a 
+period of time to provide more context to our base rates. However, there is a 
+benefit to having the true population data because our results will be reliable. 
+In addition, our use of base rates mean we don’t really have a clear picture of 
+the individuals and specific cases that are impacted by the issue.
 
-The data set also has a few discrepancies in how the prison populations are 
+• The data set also has a few discrepancies in how the prison populations are 
 reported. Some states included jails in their incarcerated population data while 
 others only included prisons. This information is provided in the data under the 
 “include_jails” column but we did not factor this into our analysis as there is 
@@ -655,7 +655,7 @@ in Kentucky and Illinois, there are multiple years where the crime totals are
 estimates rather than exact data. This could also affect our data and our 
 analysis and should be taken into consideration.
 
-In terms of the linear regression models, it is also important to note that
+• In terms of the linear regression models, it is also important to note that
 these models might be better represented by another type of regression model
 such as a logistic one. This was not evaluated in the scope of the project. It
 is also relevant to note that the extrapolations for predicting future crime
