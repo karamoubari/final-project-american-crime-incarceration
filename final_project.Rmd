@@ -515,8 +515,7 @@ by a sex organ of another person, without the consent of the victim.'"
 We wanted to see how the change in definition affected the number of
 prisoners convicted for rape. Based on the graph, it seems like after the new
 definition was implemented, the number of prisoners who are incarcerated for
-rape increased. We will perform tests to find the p-value and try to
-determine if this is a correlation relationship or a causal relationship.
+rape increased.
 
 This one change in policy had obvious impacts on the number of people 
 incarcerated for the crime. While it is only a small example, it supports 
