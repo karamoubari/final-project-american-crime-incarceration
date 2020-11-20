@@ -6,6 +6,7 @@ output: pdf_document
 ---
 
 ## Synopsis
+
 This research project is aimed to further understand and analyze American prison
 incarceration and crime in the 50 states between 2001 and 2016. Analysis was 
 done by focusing specifically on state prisoners (as opposed to federal) and the
@@ -15,9 +16,6 @@ property crimes.
 
 
 ## Introduction and Data
-
-### (The introduction should introduce your general research question and your data (where it came from, how it was collected, what are the cases, what are the variables, etc.).)
-
 
 The United States currently has the highest prison population in the world at
 around 2,094,000. This situation can be traced back to the 1970s, when
@@ -59,12 +57,11 @@ larceny, and vehicle theft.
 
 ## Methodology
 
-### (The methodology section should include the variables used to address your research question, as well as any useful visualizations or summary statistics. As well, you should introduce and justify the statistical method(s) that you believe will be useful in answering your research question.)
-
 The following variables, from the original data set, were used to address the 
 research questions above:\newline
 • `jurisdiction`: a categorical variable for federal jurisdiction and the 50 
-states. Federal jurisdiction refers to the legal scope of the government's powers in the United States of America.
+states. Federal jurisdiction refers to the legal scope of the government's 
+powers in the United States of America.
 \newline
 • `year`: a numerical variable for the year of each observation, 2001 through 
 2016. \newline 
@@ -89,7 +86,7 @@ forcibly and against her will”
 • `rape_revised`: a numerical variable for the number of rapes (using the 
 new revised definition). The new definition of rape is: “Penetration no matter 
 how slight, of the vagina or anus with any body part or object, or oral 
-penetration by a sex organ of anotehr person, without the consent of the victim”
+penetration by a sex organ of another person, without the consent of the victim”
 \newline
 • `robbery`: a numerical variable for the number of robberies. Robbery is 
 defined as the taking of something of value from another person using force 
@@ -149,9 +146,10 @@ outliers are further explained in Figure 4 where we mapped out the proportion of
 each state's population that was imprisoned in 2016 to get a clearer idea of 
 which states contribute most the issue of mass incarceration. Most noticeably, 
 Delaware, Oklahoma, and Arizona have have much higher imprisonment proportions 
-than the rest of the country. These are likely the outliers in the boxplot from 
+than the rest of the country. These are likely the outliers in the box plot from 
 Figure 3.2. 
- \newpage
+
+\newpage
 
 ```{r packages-data, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
@@ -338,8 +336,10 @@ ggplot(year_crime, aes(x=year)) +
   geom_line(aes(y = total_property_crime, colour = 
             "Total Property Crime (sum of burglary, larceny, vehicle theft")) +
   scale_colour_manual("",
-                      breaks = c("Total Burglary", "Total Larceny", "Total Vehicle Theft", "Total Property Crime"),
-                      values = c("red3", "steelblue", "springgreen4", "orangered2")) +
+                      breaks = c("Total Burglary", "Total Larceny", 
+                                 "Total Vehicle Theft", "Total Property Crime"),
+                      values = c("red3", "steelblue", "springgreen4", 
+                                 "orangered2")) +
   facet_wrap(~region) +
   scale_y_continuous(name="Number of Crimes", labels = scales::comma) +
   labs(title = " Yearly Crime by Region in the United States", 
@@ -365,7 +365,7 @@ crime_rape <- crime_rape %>%
   geom_line(aes(y = total_rape_legacy), color = "red") +
     geom_line(aes(y = total_rape_revised), color = "blue") +
     geom_vline(xintercept = 2012) +
-    labs(title="Revising definition of rape in 2012 led to more rape convictions",
+  labs(title="Revising definition of rape in 2012 led to more rape convictions",
      x = "Year",
      y = "Number of Rape Convictions",
      caption = " 
@@ -422,9 +422,6 @@ was_crime<- crime %>%
 
 ## Results
 
-### (Showcase how you arrived at answers to your question using any techniques we have learned in this class (and some beyond, if you’re feeling adventurous). Provide the main results from your analysis. The goal is not to do an exhaustive data analysis (i.e., do not calculate every statistic and procedure you have learned for every variable), but rather let me know that you are proficient at asking meaningful questions and answering them with results of data analysis, that you are proficient in using R, and that you are proficient at interpreting and presenting the results. Focus on methods that help you begin to answer your research questions.)
-
-
 ### Understanding the extent of the issue of mass incarceration:
 
 Political rhetoric that has come to the forefront in recent decades is the idea 
@@ -455,7 +452,6 @@ US Prison Population graph. However, that being said, even if the population is
 increasing, if the crime rate is staying the same, or decreasing as we observed
 previously, there is still no valid reason to incarcerate more people.
 
-
 ### Sub-statistics that can better explain the issue:
 
 How does crime differ for different regions of the US?
@@ -464,7 +460,7 @@ Figure 5: \newline
 To see how crime differs by region, we made a variable called `region` which 
 splits up the United States into 4 distinct regions (North Central, Northeast, 
 South, and West). We decided to look at only property crime (burglary, larceny, 
-and vehicle theft) and so we plotted the total buglary, total larceny, total 
+and vehicle theft) and so we plotted the total burglary, total larceny, total 
 vehicle theft, and overall total property crime from 2000-2016 on each regional 
 graph to see what the trends looked like. 
 
@@ -473,30 +469,29 @@ decline in the amount of property crime throughout 2000-2016. This is only a
 speculation, but this would suggest that trends of property crime does 
 not differ throughout each region but it does for each crime. 
 
-The south overwhelmingly has the total highest property crime total burglary, 
+The South overwhelmingly has the total highest property crime total burglary, 
 and total larceny.
 
-An outlier seems to be in the northeast graph in 2015 when there was sharp 
+An outlier seems to be in the Northeast graph in 2015 when there was sharp 
 decrease with larceny and burglary, and thus total property crime. There must
 have been policy that affected the Northeast only during that time period
 that lessened crime
 
-Because of the high number of crimes in the south and the downward spime for 
-the northwest graph that the north central and west regions are most similar
+Because of the high number of crimes in the South and the downward spike for 
+the Northwest graph that the North Central and west regions are most similar
 in numbers of crimes committed over this 16 year span. 
 
 It is also interesting to see that the types of crimes themselves are 
 seemingly related. But this we mean that for each graph, from the highest number
 to the lowest number, the crimes are larceny, burglary, then vehicle theft. 
 
-If you were looking at a region to live in the united states and buy a house or 
-car, it seems that the best place to do that would be in the North East, 
-followed closely by the north central and west region. Thus it would be advised 
-to not choose the south, although they are on a decline in property crimes 
+If you were looking at a region to live in the United States and buy a house or 
+car, it seems that the best place to do that would be in the Northeast, 
+followed closely by the North Central and West region. Thus it would be advised 
+to not choose the South, although they are on a decline in property crimes 
 committed. 
 
-
-### How the results and the issue connect to non-statistical public policy
+### How the results and the issue connect to public policy:
 
 How does policy impact incarceration? This will be explored through the lens of 
 changing definition of rape as well as through three states which decriminalized 
@@ -529,7 +524,7 @@ crime than the actual rate of crime. Despite public perception assuming the
 opposite relationship. Many times the policies can be used to adjust a narrative 
 to support a political movement or idea at the time. Crime rates can increase 
 when policy is adjusted to include more crime as seen with the change in 
-defintion for rape. This is not to say that this change contributed 
+definition for rape. This is not to say that this change contributed 
 significantly to mass incarceration or that the change in definition was unjust. 
 Rather, this example in our data exemplifies the impact of policies on 
 incarceration rather than crime rate.
@@ -549,8 +544,6 @@ less convincing as the incarceration rate leading up to 2012 was already on the
 decline, however, the incarceration most certainly does not increase with 
 recreational legalization, which is definitely not enough to call it a causal 
 relationship, however, it is pretty compelling evidence. 
-
-
 
 ### Future of the issue through basic predictive modeling:
 
@@ -602,8 +595,6 @@ to drop forever.
 
 ## Discussion
 
-### (This section is a conclusion and discussion. This will require a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. Also, critique your own methods and provide suggestions for improving your analysis. Issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. A paragraph on what you would do differently if you were able to start over with the project or what you would do next if you were going to continue work on the project should also be included.)
-
 • If we were to continue with this project we would improve our analysis by 
 looking for more political and event-based research to aid our graphs. For 
 example, in figure 5 there is an obvious dip in every crime for the northeast 
@@ -624,7 +615,8 @@ around drug incarcerations if we could find a comparable data set to combine
 with ours. The “War on Drugs” is viewed as one of the drivers of mass 
 incarceration in America but data on incarcerations for drug charges are not 
 included in this data set. There is also a relationship between drug 
-incarcerations and violent crimes that would be interesting to investigate further. 
+incarcerations and violent crimes that would be interesting to investigate 
+further. 
 
 • Additionally, having access to demographic data among the prison populations 
 in the various states would allow us to investigate the racial and socioeconomic 
@@ -663,6 +655,7 @@ are extremely rough and aren't likely to accurately predict further than a few
 years into the future because previous crime rates are likely less indicative of
 future crime than a factor such as policy.
 
+\newpage
 
 ## References
 
