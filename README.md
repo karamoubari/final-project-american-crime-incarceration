@@ -1,4 +1,4 @@
-# final-project-ps-i-love-yue
+# final-project-american-crime-incarceration
 STA 199L final project on American crime and incarceration
 
 Codebook:
